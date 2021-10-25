@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light menu" [ngClass]="backgrond">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">Navbar</a>
+
+        <!-- Btn-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuDesplegable"
+            aria-controls="menuDesplegable" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="menuDesplegable">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="Productos">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Preguntas frecuentes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="AgregarProducto">AgregarProducto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- testing -->
+<!-- <p>{{backgrond}}</p>
+<div>
+    <select name="" id="" [(ngModel)]="backgrond">
+        <option value="bg-dark">bg-dark</option>
+        <option value="bg-light">bg-light</option>
+        <option value="bg-primary">bg-primary</option>
+    </select>
+</div> -->

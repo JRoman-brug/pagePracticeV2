@@ -1,0 +1,12 @@
+<div class="gridContainer">
+    <div class="gridItem" *ngFor="let producto of productos">
+        <div class="image__container">
+            <img src="../../../assets/coca-cola-company-logo-top-100-brands-01-cba.jpg" alt="">
+        </div>
+        <div class="info__contianer">
+            <p>{{producto.nombre}}</p>
+            <p>{{producto.precio}}</p>
+        </div>
+    </div>
+</div>
+<button (click)="pro()">asd</button>
