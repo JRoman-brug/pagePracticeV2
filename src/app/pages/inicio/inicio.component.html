@@ -1,0 +1,41 @@
+    <swiper [config]="configCarousel">
+        <ng-template swiperSlide *ngFor="let imagen of imagenes">
+            <div class="carousel">
+                <img [src]="imagen" alt="">
+            </div>
+        </ng-template>
+    </swiper>
+
+<div class="aboutUs">
+    <div class="container__image">
+        <img src="../../../assets/Illustraciones/Quienes somos.svg" alt="">
+    </div>
+    <div class="container__info">
+        <h1>Quienes somos?</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus eveniet quos omnis veniam in nisi,
+            commodi
+            reprehenderit culpa minus dignissimos expedita voluptates ab, corporis temporibus magnam tenetur. Totam
+            minima quidem corrupti incidunt a repellendus quis rerum ratione doloremque consequatur praesentium
+            provident, quibusdam quaerat suscipit inventore repellat voluptates iusto asperiores quo.
+        </p>
+    </div>
+</div>
+
+
+<p-carousel [value]="productos" [numVisible]="3" [numScroll]="1" [circular]="true">
+    <ng-template let-producto pTemplate="item">
+        <div>
+            <div class="producto">
+                <div class="container__image">
+                    <img src="https://gamehag.com/img/uploaded/g7Km6La5lSBz3UVp8MiKBaXqc2G9uH.png" alt="">
+                </div>
+                <div class="producto_info">
+                    <p>Producto</p>
+                    <span>{{4000+producto | currency}}</span>
+                </div>
+                <button class="btn btn-primary btn-carousel">ver producto</button>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>

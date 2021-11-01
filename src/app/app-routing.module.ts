@@ -1,14 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgregarProductoComponent } from './pages/agregar-producto/agregar-producto.component';
+import { Error404Component } from './pages/error404/error404.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 
 const routes: Routes = [
   {
-    path:"Productos",component:ProductosComponent
+    path: "Productos", component: ProductosComponent
   },
   {
-    path:"AgregarProducto",component:AgregarProductoComponent
+    path: "Inicio", component: InicioComponent
+  },
+  {
+    path: "AgregarProducto", component: AgregarProductoComponent
+  },
+  { 
+    path: '', redirectTo: 'Inicio', pathMatch: 'full' 
+  },
+  {
+    path:"**", component:Error404Component
   }
 ];
 

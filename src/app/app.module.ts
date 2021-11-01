@@ -41,6 +41,8 @@ import { PanelModule } from 'primeng/panel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ImageModule } from 'primeng/image';
 import {DataViewModule} from 'primeng/dataview';
+import {CarouselModule} from 'primeng/carousel';
+
 
 // PrimeNG services
 import { ConfirmationService } from 'primeng/api';
@@ -49,18 +51,26 @@ import {FilterService} from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 
+// Pipe filtar productos
+
 // Componentes
 import { AppComponent } from './app.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { AgregarProductoComponent } from './pages/agregar-producto/agregar-producto.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { Error404Component } from './pages/error404/error404.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     ProductosComponent,
-    AgregarProductoComponent
+    AgregarProductoComponent,
+    FooterComponent,
+    InicioComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
@@ -108,6 +118,7 @@ import { AgregarProductoComponent } from './pages/agregar-producto/agregar-produ
     // Media
     ConfirmDialogModule,
     ImageModule,
+    CarouselModule,
     // Data
     DataViewModule
 

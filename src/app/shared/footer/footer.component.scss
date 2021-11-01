@@ -1,0 +1,57 @@
+.footer{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 100%;
+    height: 160px;
+
+}
+.menu{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.a__container{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.a__container a{
+    color: #fff;
+    text-decoration: none;
+    transition: .3s color ease;
+}
+.a__container a:hover{
+    color: #fffa;
+}
+
+
+// Contenedor de las redes sociales
+.redesSociales{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+// Links redes sociales
+.redesSociales a{
+    color: white;
+}
+.redesSociales i{
+    transition: 0.3s color ease;
+    font-size: 30px;
+}
+// redes sociales hover
+.instagram:hover{
+    color: #d29;
+}
+.whatsapp:hover{
+    color: #25D366;
+}
+.facebook:hover{
+    color: #4267B2;
+}
+
+// Nombre del negocio en el centro
+.nombreNegocio{
+    margin: auto;
+}
