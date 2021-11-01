@@ -61,6 +61,7 @@ import { AgregarProductoComponent } from './pages/agregar-producto/agregar-produ
 import { FooterComponent } from './shared/footer/footer.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { Error404Component } from './pages/error404/error404.component';
+import { ProductoComponent } from './pages/producto/producto.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { Error404Component } from './pages/error404/error404.component';
     AgregarProductoComponent,
     FooterComponent,
     InicioComponent,
-    Error404Component
+    Error404Component,
+    ProductoComponent
   ],
   imports: [
     BrowserModule,

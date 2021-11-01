@@ -52,4 +52,7 @@ export class ProductosComponent implements OnInit {
       this.sortField = value;
     }
   }
+  delete(id:string){
+    this.$firestore.deleteProducto(id);
+  }
 }

@@ -7,4 +7,5 @@ export interface IProducto {
     precio:number;
     descripcion:string;
     categoria:string;
+    img:string;
 }
