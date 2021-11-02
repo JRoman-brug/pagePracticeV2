@@ -14,7 +14,7 @@
             <span class="p-input-icon-left p-mb-2 p-mb-md-0">
                 <i class="pi pi-search"></i>
                 <!-- Usar esto (input)="dv.filter($event.target.value)" -->
-                <input type="search" pInputText placeholder="Search by brand" (input)="dv.filter($event.target.value)">
+                <input type="search" pInputText placeholder="Search by brand">
             </span>
 
             <!-- Opcion para elegir entre modo grid o lista -->
@@ -36,7 +36,7 @@
                 </div>
                 <div class="product-list-action">
                     <span class="product-price">${{product.precio}}</span>
-                    <p-button label="Ver producto" (click)="delete(product.id)"></p-button>
+                    <p-button label="Ver producto" (click)="verProducto(product.id)"></p-button>
                 </div>
             </div>
         </div>

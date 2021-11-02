@@ -8,6 +8,7 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 // PrimeNG servicio para filtrar
 import { PrimeNGConfig, SelectItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -22,7 +23,7 @@ export class ProductosComponent implements OnInit {
   sortField!: string;
   
   productos!: IProductoId[]
-  constructor(private $firestore: FirestoreService) {
+  constructor(private $firestore: FirestoreService, private route:Router) {
   }
 
   ngOnInit(): void {
@@ -52,7 +53,7 @@ export class ProductosComponent implements OnInit {
       this.sortField = value;
     }
   }
-  delete(id:string){
-    this.$firestore.deleteProducto(id);
+  verProducto(id:string){
+    this.route.navigate(['Producto',id])
   }
 }

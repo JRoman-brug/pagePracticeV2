@@ -29,33 +29,39 @@ export class ProductoService {
         const id = a.payload.doc.id;
         const data = a.payload.doc.data() as IProducto;
 
-        return {id, ...data}
+        return { id, ...data }
       }))
     )
   }
 
   // Obtener todos los productos
-  getProductos():Observable<IProductoId[]>{
+  getProductos(): Observable<IProductoId[]> {
     return this.productos;
   }
 
   // Obtener un producto
-  getProducto(id:string){
-    return this.productoCollection.doc(id).snapshotChanges()
+  getProducto(id: string) {
+    return this.productoCollection.doc(id).snapshotChanges().pipe(
+      map(a => {
+        const id = a.payload.id;
+        const data = a.payload.data() as IProducto;
+        return { id, ...data }
+      })
+    )
   }
 
   // Agregar un producto a la coleccion
-  addProducto(data:IProducto){
+  addProducto(data: IProducto) {
     this.productoCollection.add(data);
   }
 
   // Actualizar un producto
-  updateProducto(id:string, data:IProducto){
+  updateProducto(id: string, data: IProducto) {
     this.productoCollection.doc(id).update(data);
   }
 
   // Eliminar un producto
-  deleteProducto(id:string){
+  deleteProducto(id: string) {
     this.productoCollection.doc(id).delete()
   }
 }
