@@ -44,6 +44,7 @@ import {DataViewModule} from 'primeng/dataview';
 import {CarouselModule} from 'primeng/carousel';
 
 
+
 // PrimeNG services
 import { ConfirmationService } from 'primeng/api';
 import {FilterService} from 'primeng/api';
@@ -62,6 +63,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { ProductoComponent } from './pages/producto/producto.component';
+import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciar-sesion.component';
+import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,9 @@ import { ProductoComponent } from './pages/producto/producto.component';
     FooterComponent,
     InicioComponent,
     Error404Component,
-    ProductoComponent
+    ProductoComponent,
+    IniciarSesionComponent,
+    PreguntasFrecuentesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,21 @@
-    <swiper [config]="configCarousel">
-        <ng-template swiperSlide *ngFor="let imagen of imagenes">
-            <div class="carousel">
-                <img [src]="imagen" alt="">
-            </div>
-        </ng-template>
-    </swiper>
 
+<!-- Carousel -->
+<swiper [config]="configCarousel">
+    <ng-template swiperSlide *ngFor="let imagen of imagenes">
+        <div class="carousel">
+            <img [src]="imagen" alt="">
+        </div>
+    </ng-template>
+</swiper>
+
+<!-- Card de sobre nosotros -->
 <div class="aboutUs">
+    <!-- Imagen -->
     <div class="container__image">
         <img src="../../../assets/Illustraciones/Quienes somos.svg" alt="">
     </div>
+
+    <!-- Informacion -->
     <div class="container__info">
         <h1>Quienes somos?</h1>
         <p>
@@ -22,7 +28,7 @@
     </div>
 </div>
 
-
+<!-- Carousel de productoss -->
 <p-carousel [value]="productos" [numVisible]="3" [numScroll]="1" [circular]="true">
     <ng-template let-producto pTemplate="item">
         <div>

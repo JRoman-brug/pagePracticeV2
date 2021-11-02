@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light menu" [ngClass]="backgrond">
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <!-- Logo -->
         <a class="navbar-brand" href="#">Navbar</a>
 
@@ -22,13 +22,17 @@
                     <a class="nav-link" href="#">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Preguntas frecuentes</a>
+                    <a class="nav-link" routerLink="PreguntasFrecuentes">Preguntas frecuentes</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" routerLink="AgregarProducto">AgregarProducto</a>
                 </li>
             </ul>
+
+        </div>
+        <div class="d-flex">
+            <a routerLink="InicioSesion">Iniciar sesion</a>
         </div>
     </div>
 </nav>

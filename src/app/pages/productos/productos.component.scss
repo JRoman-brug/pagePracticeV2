@@ -1,7 +1,6 @@
-
 :host ::ng-deep {
     // Encabezado
-    .headerOptions{
+    .headerOptions {
         display: flex;
         justify-content: space-between;
     }
@@ -68,7 +67,7 @@
     .container__itemLista {
         width: 100%;
     }
-    .container__itemGrid{
+    .container__itemGrid {
         width: 25%;
     }
     .product-grid-item {
@@ -106,4 +105,9 @@
     margin-bottom: 2rem;
 }
 
-
+// Fixeando las imagenes
+.container__grid__producto img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}

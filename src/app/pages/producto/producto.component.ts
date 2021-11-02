@@ -24,7 +24,7 @@ export class ProductoComponent implements OnInit {
     private route: Router
   ) {
 
-    // obtengo por parametro el id que se necesite
+    // obtengo por parametro el id que se necesito
     this.routeAct.params.subscribe(resp => {
       this.id = resp.id;
     })

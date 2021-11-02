@@ -1,0 +1,15 @@
+<!-- Centrar contenedor -->
+<div class="contenedor__general">
+    <!-- Preguntas -->
+    <div class="container__preguntas">
+        <h1>Preguntas Frecuentes</h1>
+        <!-- Todas las preguntas -->
+        <p-accordion>
+            <div *ngFor="let pregunta of preguntas">
+                <p-accordionTab  [header]="pregunta.pregunta">
+                   {{pregunta.respuesta}}
+                </p-accordionTab>
+            </div>
+        </p-accordion>
+    </div>
+</div>

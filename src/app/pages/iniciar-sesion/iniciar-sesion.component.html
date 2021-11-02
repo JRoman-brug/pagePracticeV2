@@ -1,0 +1,32 @@
+<!-- Contenedor general -->
+<div class="contenedor__general">
+
+    <!-- Card de inicio sesion -->
+    <div class="InicioSesion bg-primary">
+        <!-- Contenedor imagen -->
+        <div class="container__image">
+            <img src="../../../assets/Illustraciones/InicioSesion.svg" alt="">
+        </div>
+        <!-- Contenedor form -->
+        <div class="container__form">
+            <h1>Acceder a tu cuenta</h1>
+
+            <!-- Formulario -->
+            <form (ngSubmit)="submit()" class="formulario">
+                <div class="p-field p-col-12">
+                    <span class="p-float-label">
+                        <input type="mail" id="inputtext" class="w-100" pInputText> 
+                        <label for="inputtext">Mail</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12">
+                    <span class="p-float-label">
+                        <input type="password" id="inputtext" class="w-100" pInputText> 
+                        <label for="inputtext">Contraseña</label>
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-secondary">Acceder</button>
+            </form>
+        </div>
+    </div>
+</div>

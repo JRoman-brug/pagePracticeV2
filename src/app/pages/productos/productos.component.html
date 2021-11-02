@@ -1,3 +1,4 @@
+<div style="width: 90%; margin: auto;">
 <p-dataView [value]="productos" [paginator]="true" [rows]="16" filterBy="nombre" [sortField]="sortField"
     [sortOrder]="sortOrder" #dv>
 
@@ -25,17 +26,17 @@
     <!-- Modo lista -->
     <ng-template let-product pTemplate="listItem">
         <div class="container__itemLista">
-            <div class="product-list-item">
+            <div class="product-list-item container__grid__producto">
                 <div>
                     <!-- falta el object fit -->
-                    <img [src]="product.img" alt="" style="width: 200px; height: 200px; object-fit: contain;">
+                    <img [src]="product.img" alt="">
                 </div>
                 <div class="product-list-detail">
                     <div class="product-name">{{product.nombre}}</div>
                     <div class="product-description">{{product.categoria}}</div>
                 </div>
                 <div class="product-list-action">
-                    <span class="product-price">${{product.precio}}</span>
+                    <span class="product-price">{{product.precio | currency}}</span>
                     <p-button label="Ver producto" (click)="verProducto(product.id)"></p-button>
                 </div>
             </div>
@@ -52,19 +53,19 @@
                         <span class="product-category">{{product.categoria}}</span>
                     </div>
                 </div>
-                <div class="product-grid-item-content">
+                <div class="product-grid-item-content container__grid__producto">
                     <!-- tengo que hacer el object-fit -->
-                    <img [src]="product.img" alt="" style="width: 200px; height: 200px; object-fit: contain;">
-
+                    <img [src]="product.img" alt="">
 
                     <div class="product-name">{{product.nombre}}</div>
                     <div class="product-description">{{product.description}}</div>
                 </div>
                 <div class="product-grid-item-bottom">
-                    <span class="product-price">${{product.precio}}</span>
-                    <p-button> ver producto</p-button>
+                    <span class="product-price">{{product.precio | currency}}</span>
                 </div>
+                <button class="btn btn-primary btn-block my-2">Ver producto</button>
             </div>
         </div>
     </ng-template>
 </p-dataView>
+</div>

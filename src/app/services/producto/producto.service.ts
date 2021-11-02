@@ -38,7 +38,9 @@ export class ProductoService {
   getProductos(): Observable<IProductoId[]> {
     return this.productos;
   }
-
+  getProductosByCategoty(categoria: string) {
+    return this.productoCollection.ref.where("categoria","==",categoria).get()
+  }
   // Obtener un producto
   getProducto(id: string) {
     return this.productoCollection.doc(id).snapshotChanges().pipe(
