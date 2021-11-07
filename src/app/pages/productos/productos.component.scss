@@ -1,6 +1,12 @@
+.contenedor__data{
+   min-height: 80vh;
+}
 :host ::ng-deep {
+    .p-dataview-content{
+        min-height: 500px;
+    }
     // Encabezado
-    .headerOptions {
+    .headerOptions{
         display: flex;
         justify-content: space-between;
     }
@@ -110,4 +116,15 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
+}
+
+.buscadorCategoria{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+}
+.buscadorCategoria i{
+    font-size: 20px;
+    cursor: pointer;
 }

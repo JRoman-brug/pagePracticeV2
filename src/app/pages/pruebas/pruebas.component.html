@@ -1,0 +1,23 @@
+<div class="contenedor">
+  <div class="contenedor_formulario">
+    <h1 class="is-size-1">Subir archivos a Cloud Storage</h1>
+
+
+    <!-- Formulario para subir las cosas -->
+    <form [formGroup]="formulario" (ngSubmit)="uploadFile()">
+      <div class="formulario">
+          <!-- Input para subir el archivo -->
+          <input type="text" placeholder="nombre" formControlName="nombre">
+          <input type="number" placeholder="precio" formControlName="precio">
+          <input type="text" placeholder="descripcion" formControlName="descripcion">
+          <select formControlName="categoria">
+            <option hidden selected>Selecciona una categoria</option>
+            <option *ngFor="let opcion of opciones">{{opcion}}</option>
+          </select>
+          <input class="file-input" type="file" formControlName="img" (change)="seletedArchivo($event)">
+          <button type="submit">aceptar</button>
+      </div>
+      <hr>
+    </form>
+  </div>
+</div>

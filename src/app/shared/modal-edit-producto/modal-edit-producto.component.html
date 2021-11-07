@@ -1,0 +1,51 @@
+<div class="contenedor__modal">
+    <form class="formulario" [formGroup]="formulario">
+
+        <div class="contenedor__primerosInputs">
+            <!-- Input nombre del producto -->
+            <div class="container__input">
+                <label>Nombre del producto</label>
+                <div class="p-inputgroup">
+                    <input type="text" pInputText formControlName="nombre">
+                </div>
+
+            </div>
+
+            <!-- Input precio -->
+            <div class="container__input">
+                <label>Precio</label>
+                <div class="p-inputgroup">
+                    <p-inputNumber mode="currency" [min]="0" currency="ARS" locale="es-AR" formControlName="precio">
+                    </p-inputNumber>
+                </div>
+            </div>
+
+            <!-- Input de categoria -->
+            <div>
+                <label>Categoria</label>
+                <p-dropdown [options]="opciones" placeholder="Selecciona una categoria" formControlName="categoria">
+                </p-dropdown>
+            </div>
+        </div>
+
+        <!-- input imagen-->
+        <div class="container__image">
+            <input type="file" accept="image/*" (change)="selectImage($event)">
+            <img [src]="imagen">
+        </div>
+
+        <!-- Input descripcion -->
+        <div class="container__input container__textArea">
+            <label>Descripción</label>
+            <textarea pInputTextarea [rows]="5" [cols]="30" formControlName="descripcion"></textarea>
+        </div>
+
+    </form>
+    <div class="container__button">
+        <button class="btn btn-danger" (click)="cancelModal()">Cancelar</button>
+        <button class="btn btn-success" (click)="submit()">Aceptar</button>
+    </div>
+
+
+    <p>sadsa {{porcentaje}}</p>
+</div>

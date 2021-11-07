@@ -1,71 +1,78 @@
-<div style="width: 90%; margin: auto;">
-<p-dataView [value]="productos" [paginator]="true" [rows]="16" filterBy="nombre" [sortField]="sortField"
-    [sortOrder]="sortOrder" #dv>
+<div style="width: 90%; margin: auto;" class="contenedor__data">
+    <p-dataView [value]="productos" [paginator]="true" [rows]="16" filterBy="nombre" [sortField]="sortField"
+        [sortOrder]="sortOrder" #dv >
 
-    <!-- Header de dataview -->
-    <ng-template pTemplate="header">
-        <div class="headerOptions">
+        <!-- Header de dataview -->
+        <ng-template pTemplate="header">
+            <div class="headerOptions">
 
-            <!-- Opciones para ordenar los productos por precio -->
-            <p-dropdown [options]="OpcionesPrecio" placeholder="Ordenar por precio"
-                (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                <!-- Opciones para ordenar los productos por precio -->
+                <p-dropdown [options]="OpcionesPrecio" placeholder="Ordenar por precio"
+                    (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
 
 
-            <!-- Buscador por nombre -->
-            <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-                <i class="pi pi-search"></i>
-                <!-- Usar esto (input)="dv.filter($event.target.value)" -->
-                <input type="search" pInputText placeholder="Search by brand">
-            </span>
+                <!-- Buscador por nombre -->
+                <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                    <i class="pi pi-search"></i>
+                    <!-- Usar esto (input)="dv.filter($event.target.value)" -->
+                    <input type="search" pInputText placeholder="Search by brand">
+                </span>
 
-            <!-- Opcion para elegir entre modo grid o lista -->
-            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-        </div>
-    </ng-template>
+                <!-- Buscador por categoria -->
+                <span class="buscadorCategoria">
+                    <p-dropdown [options]="opciones" [(ngModel)]="opcionSeleccionada" placeholder="Seleccion una categoria" (onChange)="changeProductos()"></p-dropdown>
+                    <i class="fas fa-times" *ngIf="opcionSeleccionada != null" (click)="cleanOption()"></i>
+                </span>
 
-    <!-- Modo lista -->
-    <ng-template let-product pTemplate="listItem">
-        <div class="container__itemLista">
-            <div class="product-list-item container__grid__producto">
-                <div>
-                    <!-- falta el object fit -->
-                    <img [src]="product.img" alt="">
-                </div>
-                <div class="product-list-detail">
-                    <div class="product-name">{{product.nombre}}</div>
-                    <div class="product-description">{{product.categoria}}</div>
-                </div>
-                <div class="product-list-action">
-                    <span class="product-price">{{product.precio | currency}}</span>
-                    <p-button label="Ver producto" (click)="verProducto(product.id)"></p-button>
-                </div>
+
+                <!-- Opcion para elegir entre modo grid o lista -->
+                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
             </div>
-        </div>
-    </ng-template>
+        </ng-template>
 
-    <!-- Modo grilla -->
-    <ng-template let-product pTemplate="gridItem">
-        <div class="container__itemGrid">
-            <div class="product-grid-item card">
-                <div class="product-grid-item-top">
+        <!-- Modo lista -->
+        <ng-template let-product pTemplate="listItem">
+            <div class="container__itemLista">
+                <div class="product-list-item container__grid__producto">
                     <div>
-                        <i class="pi pi-tag product-category-icon"></i>
-                        <span class="product-category">{{product.categoria}}</span>
+                        <!-- falta el object fit -->
+                        <img [src]="product.img" alt="">
+                    </div>
+                    <div class="product-list-detail">
+                        <div class="product-name">{{product.nombre}}</div>
+                        <div class="product-description">{{product.categoria}}</div>
+                    </div>
+                    <div class="product-list-action">
+                        <span class="product-price">{{product.precio | currency}}</span>
+                        <p-button label="Ver producto" (click)="verProducto(product.id)"></p-button>
                     </div>
                 </div>
-                <div class="product-grid-item-content container__grid__producto">
-                    <!-- tengo que hacer el object-fit -->
-                    <img [src]="product.img" alt="">
-
-                    <div class="product-name">{{product.nombre}}</div>
-                    <div class="product-description">{{product.description}}</div>
-                </div>
-                <div class="product-grid-item-bottom">
-                    <span class="product-price">{{product.precio | currency}}</span>
-                </div>
-                <button class="btn btn-primary btn-block my-2">Ver producto</button>
             </div>
-        </div>
-    </ng-template>
-</p-dataView>
+        </ng-template>
+
+        <!-- Modo grilla -->
+        <ng-template let-product pTemplate="gridItem">
+            <div class="container__itemGrid">
+                <div class="product-grid-item card">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category">{{product.categoria}}</span>
+                        </div>
+                    </div>
+                    <div class="product-grid-item-content container__grid__producto">
+                        <!-- tengo que hacer el object-fit -->
+                        <img [src]="product.img" alt="">
+
+                        <div class="product-name">{{product.nombre}}</div>
+                        <div class="product-description">{{product.description}}</div>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <span class="product-price">{{product.precio | currency}}</span>
+                    </div>
+                    <button class="btn btn-primary btn-block my-2">Ver producto</button>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
 </div>

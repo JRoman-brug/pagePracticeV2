@@ -35,18 +35,30 @@ export class ProductoService {
   }
 
   // Obtener todos los productos
-  getProductos(): Observable<IProductoId[]> {
-    return this.productos;
+
+  getProductos(categoria?:string){
+    if(categoria != null){
+      return this.firestore.collection('productos', ref => ref.where('categoria', '==', categoria)).snapshotChanges().pipe(
+        map(a=> a.map(a=>{
+          const id = a.payload.doc.id;
+          const data = a.payload.doc.data() as IProducto;
+  
+          return { id, ...data }
+        }))
+      )
+    }
+    else{
+      return this.productos;
+    }
   }
-  getProductosByCategoty(categoria: string) {
-    return this.productoCollection.ref.where("categoria","==",categoria).get()
-  }
+
+
   // Obtener un producto
   getProducto(id: string) {
     return this.productoCollection.doc(id).snapshotChanges().pipe(
       map(a => {
-        const id = a.payload.id;
         const data = a.payload.data() as IProducto;
+        const id = a.payload.id;
         return { id, ...data }
       })
     )

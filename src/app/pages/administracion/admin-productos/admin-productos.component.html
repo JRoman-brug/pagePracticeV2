@@ -1,0 +1,28 @@
+<div class="hola">
+    <p-table [value]="productos" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 320px;">nombre</th>
+                <th>precio</th>
+                <th>categoria</th>
+                <th style="width: 180px"></th>
+                <th>
+                    <button class="btn btn-success" (click)="addProducto()"><i class="pi pi-fw pi-plus"></i></button>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-producto>
+            <tr>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.precio}}</td>
+                <td>{{producto.categoria}}</td>
+                <td>
+                    <button class="btn btn-warning" (click)="openModal(producto.id)"><i class="pi pi-fw pi-pencil"></i></button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteProducto(producto.id)"><i class="pi pi-fw pi-trash"></i></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

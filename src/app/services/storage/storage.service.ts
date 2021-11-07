@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/compat/storage';
 import { map } from 'rxjs/operators';
 import { FileUpload } from 'src/app/interfaces/fileUpload/file-upload';
 
@@ -8,15 +8,24 @@ import { FileUpload } from 'src/app/interfaces/fileUpload/file-upload';
 })
 export class StorageService {
 
-  private basePath = '/imagenProductos';
-  constructor(private storage: AngularFireStorage) {
+  basePath:string ="productos"
+  prueba:AngularFireStorageReference;
 
+  constructor(
+    private storage: AngularFireStorage
+  ) { 
+    this.prueba = this.storage.ref("productos")
   }
-  pushImageStorage(file:any){
-    const filePath = `${this.basePath}/${file.name.replace(/ /g, "")}`;
-    const storageRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, file.file);
 
-    return storageRef.getDownloadURL()
+  //Tarea para subir archivo
+  public tareaCloudStorage(nombreArchivo: string, datos: any) {
+    let path = `${this.basePath}/${nombreArchivo}`;
+    return this.storage.upload(path, datos);
+  }
+
+  //Referencia del archivo
+  public referenciaCloudStorage(nombreArchivo: string) {
+
+    return this.prueba.child(nombreArchivo)
   }
 }

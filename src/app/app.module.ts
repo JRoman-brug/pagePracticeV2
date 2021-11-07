@@ -40,14 +40,17 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { PanelModule } from 'primeng/panel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ImageModule } from 'primeng/image';
-import {DataViewModule} from 'primeng/dataview';
-import {CarouselModule} from 'primeng/carousel';
-
+import { DataViewModule } from 'primeng/dataview';
+import { CarouselModule } from 'primeng/carousel';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 
 
 // PrimeNG services
 import { ConfirmationService } from 'primeng/api';
-import {FilterService} from 'primeng/api';
+import { FilterService } from 'primeng/api';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -58,26 +61,32 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { ProductosComponent } from './pages/productos/productos.component';
-import { AgregarProductoComponent } from './pages/agregar-producto/agregar-producto.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciar-sesion.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
+import { PruebasComponent } from './pages/pruebas/pruebas.component';
+import { AdministracionComponent } from './pages/administracion/administracion.component';
+import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
+import { ModalEditProductoComponent } from './shared/modal-edit-producto/modal-edit-producto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     ProductosComponent,
-    AgregarProductoComponent,
     FooterComponent,
     InicioComponent,
     Error404Component,
     ProductoComponent,
     IniciarSesionComponent,
-    PreguntasFrecuentesComponent
+    PreguntasFrecuentesComponent,
+    PruebasComponent,
+    AdministracionComponent,
+    AdminProductosComponent,
+    ModalEditProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +98,10 @@ import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/pregu
     ReactiveFormsModule,
 
     // Toast ngx-toastr
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      countDuplicates: true
+    }),
 
     // Swiper
     SwiperModule,
@@ -127,12 +139,21 @@ import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/pregu
     ImageModule,
     CarouselModule,
     // Data
-    DataViewModule
-
+    DataViewModule,
+    TableModule,
+    //Menu
+    TabMenuModule,
+    //Overlay
+    DialogModule,
+    DynamicDialogModule
+  ],
+  entryComponents: [
+    ModalEditProductoComponent
   ],
   providers: [
     ConfirmationService,
-    FilterService
+    FilterService,
+    DialogService
   ],
   bootstrap: [AppComponent]
 })

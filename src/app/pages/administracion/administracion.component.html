@@ -1,0 +1,15 @@
+<div class="contenedor__general">
+    <div class="control__panel">
+        <p-tabMenu [model]="items">
+            <ng-template pTemplate="item" let-item let-i="index">
+                <span>
+                    <i [class]="item.icon"></i>
+                    <span>{{item.label}}</span>
+                </span>
+            </ng-template>
+        </p-tabMenu>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
