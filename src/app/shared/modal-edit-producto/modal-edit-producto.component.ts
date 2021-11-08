@@ -25,7 +25,7 @@ export class ModalEditProductoComponent implements OnInit {
   formulario: FormGroup
   porcentaje: any = 0;
 
-  image_path:string;
+  image_path: string;
 
   // Categorias
   opciones: string[] = [
@@ -112,7 +112,8 @@ export class ModalEditProductoComponent implements OnInit {
 
     // Subo la imagen
     // crea la referencia 
-    this.formulario.value.img = await this.$storage.referenciaCloudStorage(file.name);
+
+    let referencia = await this.$storage.referenciaCloudStorage(file.name);
 
     // sube la imagen
     this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe(resp => {
@@ -127,6 +128,10 @@ export class ModalEditProductoComponent implements OnInit {
         }
       }
     });
+
+    await referencia.getDownloadURL().toPromise().then(resp => {
+      this.formulario.value.img = resp
+    })
   }
 
 }

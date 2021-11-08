@@ -73,6 +73,7 @@ import { AdministracionComponent } from './pages/administracion/administracion.c
 import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
 import { ModalEditProductoComponent } from './shared/modal-edit-producto/modal-edit-producto.component';
 import { ModalAddProductoComponent } from './shared/modal-add-producto/modal-add-producto.component';
+import { ModalCategoriaComponent } from './shared/modal-categoria/modal-categoria.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { ModalAddProductoComponent } from './shared/modal-add-producto/modal-add
     AdministracionComponent,
     AdminProductosComponent,
     ModalEditProductoComponent,
-    ModalAddProductoComponent
+    ModalAddProductoComponent,
+    ModalCategoriaComponent
   ],
   imports: [
     BrowserModule,

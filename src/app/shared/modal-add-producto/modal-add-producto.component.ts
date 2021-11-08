@@ -83,43 +83,69 @@ export class ModalAddProductoComponent implements OnInit {
 
   //Selecciono la imagen 
   async selectImage(event: any) {
+    const file = event.target.files[0];
 
-    try {
-      const file = event.target.files[0];
-
-      this.imagen_path = file.name;
-      // Obtengo el base64 de la imagen
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.imagen = reader.result
-      };
+    this.imagen_path = file.name;
+    // Obtengo el base64 de la imagen
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.imagen = reader.result
+    };
 
 
-      // Subo la imagen
-      
+    // Subo la imagen
 
-      // sube la imagen
-      this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe(resp => {
-        // Comprueba el estado de subida de la imagen
-        if (resp) {
-          this.porcentaje = Math.round(resp)
-          if (resp < 100) {
-            this.estadoSubida = true;
-          }
-          else {
-            this.estadoSubida = false;
-          }
+    let prueba = `${file}${file.name}`;
+    // Crea la referencia
+
+
+    let referencia = this.$storage.referenciaCloudStorage(file.name);
+
+    // sube la imagen
+    await this.$storage.tareaCloudStorage(file.name, file).percentageChanges().toPromise().then((resp)=>{
+      // Comprueba el estado de subida de la imagen
+      if (resp) {
+        this.porcentaje = Math.round(resp)
+        if (resp < 100) {
+          this.estadoSubida = true;
         }
-      });
-      // crea la referencia 
-      await this.$storage.referenciaCloudStorage(file.name).toPromise().then(resp=>{
-        this.formulario.value.img = resp
-      })
+        else {
+          this.estadoSubida = false;
+        }
+      }
+    })
 
-    } catch (error) {
-      console.log(error)
-    }
+
+    // .toPromise().then((resp)=>{
+    //   // Comprueba el estado de subida de la imagen
+    //   if (resp) {
+    //     this.porcentaje = Math.round(resp)
+    //     if (resp < 100) {
+    //       this.estadoSubida = true;
+    //     }
+    //     else {
+    //       this.estadoSubida = false;
+    //     }
+    //   }
+    // })
+    // .subscribe(resp => {
+    //   // Comprueba el estado de subida de la imagen
+    //   if (resp) {
+    //     this.porcentaje = Math.round(resp)
+    //     if (resp < 100) {
+    //       this.estadoSubida = true;
+    //     }
+    //     else {
+    //       this.estadoSubida = false;
+    //     }
+    //   }
+    // });
+
+    await referencia.getDownloadURL().toPromise().then(resp => {
+      this.formulario.value.img = resp
+    })
+
   }
 
 }

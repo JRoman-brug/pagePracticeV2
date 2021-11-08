@@ -18,16 +18,13 @@ export class StorageService {
   }
 
   //Tarea para subir archivo
-  tareaCloudStorage(nombreArchivo: string, datos: any) {
-    let path = `${this.basePath}/${nombreArchivo}`;
-    return this.storage.upload(path, datos);
+  public tareaCloudStorage(nombreArchivo: string, datos: any) {
+    return this.storage.upload(`productos/${nombreArchivo}`, datos)
   }
 
   //Referencia del archivo
-  referenciaCloudStorage(nombreArchivo: string) {
-
-    return this.prueba.child(nombreArchivo).getDownloadURL()
-
+  public referenciaCloudStorage(nombreArchivo: string) {
+    return this.prueba.child(nombreArchivo);
   }
 
   eliminarArchivo(img: string) {
