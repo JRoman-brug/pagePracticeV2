@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
@@ -15,17 +16,25 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class ModalEditProductoComponent implements OnInit {
 
+  // Id del producto
   id: any;
-  producto!: IProductoId
+  // Estado del subida de la imagen
+  estadoSubida: boolean = false;
+
+  // Formulario
   formulario: FormGroup
-  porcentaje:any = 0;
+  porcentaje: any = 0;
+
+  image_path:string;
+
+  // Categorias
   opciones: string[] = [
     "categoria1",
     "categoria2",
     "categoria3",
   ]
 
-  imagen!:any;
+  imagen!: any;
 
   opcionSeleccionada!: string;
   constructor(
@@ -34,7 +43,7 @@ export class ModalEditProductoComponent implements OnInit {
     private $productoServ: ProductoService,
     private $storage: StorageService,
     private fb: FormBuilder,
-    private _sanitizer: DomSanitizer
+    private toast: ToastrService
   ) {
     this.formulario = fb.group({
       nombre: ["", Validators.required],
@@ -43,6 +52,8 @@ export class ModalEditProductoComponent implements OnInit {
       descripcion: ["", Validators.required],
       img: ["", Validators.required]
     })
+
+    this.image_path = "";
   }
 
   // Cosas que tengo que hacer: poner un spin un hover
@@ -58,11 +69,10 @@ export class ModalEditProductoComponent implements OnInit {
         precio: resp.precio,
         categoria: resp.categoria,
         descripcion: resp.descripcion,
-        img: resp.img
       })
       this.imagen = resp.img
     })
-
+    this.formulario.value.img = this.imagen;
   }
   // Cierro el modal
   cancelModal() {
@@ -78,38 +88,45 @@ export class ModalEditProductoComponent implements OnInit {
       categoria: this.formulario.value.categoria,
       descripcion: this.formulario.value.descripcion,
       img: this.formulario.value.img,
+      img_path: this.image_path
     }
 
     // Actualizo la informacion
     this.$productoServ.updateProducto(this.id, producto)
 
+    this.toast.success("Se actualizo correctamente el producto a la base de datos", "Se actualizo el producto", { positionClass: 'toast-bottom-right', closeButton: true })
     this.ref.close()
   }
 
   //Selecciono la imagen 
   async selectImage(event: any) {
     const file = event.target.files[0];
-
+    this.image_path = file.name
     // Obtengo el base64 de la imagen
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       this.imagen = reader.result
-    }; 
+    };
 
 
     // Subo la imagen
     // crea la referencia 
-    let reference = await this.$storage.referenciaCloudStorage(file.name);
-    
-    // sube la imagen
-    this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe(resp=>{
-      this.porcentaje = resp
-    }); 
+    this.formulario.value.img = await this.$storage.referenciaCloudStorage(file.name);
 
-    await reference.getDownloadURL().toPromise().then(url=>{
-      this.formulario.value.img = url
-    })
+    // sube la imagen
+    this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe(resp => {
+      // Comprueba el estado de subida de la imagen
+      if (resp) {
+        this.porcentaje = Math.round(resp)
+        if (resp < 100) {
+          this.estadoSubida = true;
+        }
+        else {
+          this.estadoSubida = false;
+        }
+      }
+    });
   }
 
 }

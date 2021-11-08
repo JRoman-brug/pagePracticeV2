@@ -43,40 +43,41 @@ export class PruebasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  seletedArchivo(event: any) {
-    if (event.target.files.length > 0) {
-      this.file = event.target.files[0];
-      this.fileName = event.target.files[0].name
-    }
-  }
+  // seletedArchivo(event: any) {
+  //   if (event.target.files.length > 0) {
+  //     this.file = event.target.files[0];
+  //     this.fileName = event.target.files[0].name
+  //   }
+  // }
 
-  async uploadFile() {
-    // crea la referencia 
-    let reference = await this.firebaseStorage.referenciaCloudStorage(this.fileName);
+  // async uploadFile() {
+  //   // crea la referencia 
+  //   let reference = await this.firebaseStorage.referenciaCloudStorage(this.fileName);
     
-    // sube la imagen
-    await this.firebaseStorage.tareaCloudStorage(this.fileName, this.file); 
+  //   // sube la imagen
+  //   await this.firebaseStorage.tareaCloudStorage(this.fileName, this.file); 
 
 
 
-    await reference.getDownloadURL().toPromise().then(url=>{
-      this.formulario.value.img = url
-    })
+  //   await reference.getDownloadURL().toPromise().then(url=>{
+  //     this.formulario.value.img = url
+  //   })
 
-    console.log(this.formulario.value.img)
+  //   console.log(this.formulario.value.img)
 
-    const producto: IProducto = {
-      nombre: this.formulario.value.nombre,
-      precio: this.formulario.value.precio,
-      descripcion: this.formulario.value.descripcion,
-      categoria: this.formulario.value.categoria,
-      img: this.formulario.value.img,
-    }
+  //   const producto: IProducto = {
+  //     nombre: this.formulario.value.nombre,
+  //     precio: this.formulario.value.precio,
+  //     descripcion: this.formulario.value.descripcion,
+  //     categoria: this.formulario.value.categoria,
+  //     img: this.formulario.value.img,
+  //     img_path: ""
+  //   }
 
-    this.$productoServ.addProducto(producto)
-    console.log(producto)
+  //   this.$productoServ.addProducto(producto)
+  //   console.log(producto)
 
-    this.route.navigate(["Productos"])
-  }
+  //   this.route.navigate(["Productos"])
+  // }
 
 }

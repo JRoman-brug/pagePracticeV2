@@ -76,6 +76,6 @@ export class ProductoService {
 
   // Eliminar un producto
   deleteProducto(id: string) {
-    this.productoCollection.doc(id).delete()
+    return this.productoCollection.doc(id).delete()
   }
 }

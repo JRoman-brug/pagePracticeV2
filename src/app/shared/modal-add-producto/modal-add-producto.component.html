@@ -32,7 +32,7 @@
         <div class="container__image" >
             <img [src]="imagen">
             <!-- hover con icono de subir -->
-            <div class="upload__image">
+            <div class="upload__image" *ngIf="!estadoSubida">
                 <i class="fas fa-upload"></i>
             </div>
             <!-- Icono de carga -->

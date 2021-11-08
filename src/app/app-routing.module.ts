@@ -35,6 +35,9 @@ const routes: Routes = [
     children:[
       {
         path:"Admin-Productos",component:AdminProductosComponent
+      },
+      {
+        path:"",component:AdminProductosComponent, pathMatch:"full"
       }
     ]
   },

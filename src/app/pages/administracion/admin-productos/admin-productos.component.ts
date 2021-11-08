@@ -5,10 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 
 // Interfaces producto
-import { IProducto } from 'src/app/interfaces/producto/producto';
+import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
 
 // Services firebase productos
 import { ProductoService } from 'src/app/services/producto/producto.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
+import { ModalAddProductoComponent } from 'src/app/shared/modal-add-producto/modal-add-producto.component';
 import { ModalEditProductoComponent } from 'src/app/shared/modal-edit-producto/modal-edit-producto.component';
 
 @Component({
@@ -19,7 +21,11 @@ import { ModalEditProductoComponent } from 'src/app/shared/modal-edit-producto/m
 export class AdminProductosComponent implements OnInit {
 
   productos!: IProducto[];
-  constructor(private $productoServ: ProductoService, private toast: ToastrService, public dialogService: DialogService) {
+  constructor(private $productoServ: ProductoService,
+    private toast: ToastrService,
+    public dialogService: DialogService,
+    private $storage: StorageService
+  ) {
 
   }
 
@@ -27,39 +33,38 @@ export class AdminProductosComponent implements OnInit {
     this.updateProductos()
   }
 
+  // Actualizo los producto
   updateProductos() {
     this.$productoServ.getProductos().subscribe(resp => {
       this.productos = resp
     })
   }
-  // Borrar porque esto estara en un modal
-  addProducto() {
-    const producto: IProducto = {
-      nombre: "patos lucas2",
-      precio: 777,
-      categoria: "categoria1",
-      descripcion: "es el pato lucas",
-      img: "https://firebasestorage.googleapis.com/v0/b/crud-d7599.appspot.com/o/productos%2Fimages.jpg?alt=media&token=0560313d-5a68-440f-ae28-b22924cf5f9f",
-
-    }
-
-    this.$productoServ.addProducto(producto)
+  // Modal editar producto
+  AddProducto() {
+    const ref = this.dialogService.open(ModalAddProductoComponent, {
+      header: "Agregar un producto"
+    })
   }
 
-
-  // Open modal
-  openModal(id:string) {
+  // Modal editar producto
+  editProducto(id: string) {
     const ref = this.dialogService.open(ModalEditProductoComponent, {
-      data:{
-        id:id
+      data: {
+        id: id
       },
-      header:"Editar producto"
+      header: "Editar producto"
     })
   }
 
   // Eliminar producto
   deleteProducto(id: string) {
-    this.$productoServ.deleteProducto(id);
-    this.toast.error("El producto se elimino correctamente", "El producto se elimino", { positionClass: 'toast-bottom-right', closeButton:true })
+    this.$productoServ.deleteProducto(id).then(()=>{
+      // this.$productoServ.getProducto(id).subscribe(resp=>{
+      //   imagen_path = resp.img_path;
+      // })
+
+      // this.$storage.eliminarArchivo(imagen_path)
+    })
+    this.toast.error("El producto se elimino correctamente", "El producto se elimino", { positionClass: 'toast-bottom-right', closeButton: true })
   }
 }

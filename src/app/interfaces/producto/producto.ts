@@ -8,4 +8,5 @@ export interface IProducto {
     descripcion:string;
     categoria:string;
     img:string;
+    img_path:string;
 }

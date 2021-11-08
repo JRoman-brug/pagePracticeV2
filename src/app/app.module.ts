@@ -46,6 +46,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 // PrimeNG services
@@ -71,6 +72,7 @@ import { PruebasComponent } from './pages/pruebas/pruebas.component';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
 import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
 import { ModalEditProductoComponent } from './shared/modal-edit-producto/modal-edit-producto.component';
+import { ModalAddProductoComponent } from './shared/modal-add-producto/modal-add-producto.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +88,8 @@ import { ModalEditProductoComponent } from './shared/modal-edit-producto/modal-e
     PruebasComponent,
     AdministracionComponent,
     AdminProductosComponent,
-    ModalEditProductoComponent
+    ModalEditProductoComponent,
+    ModalAddProductoComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +148,9 @@ import { ModalEditProductoComponent } from './shared/modal-edit-producto/modal-e
     TabMenuModule,
     //Overlay
     DialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    // Misc
+    ProgressSpinnerModule
   ],
   entryComponents: [
     ModalEditProductoComponent
