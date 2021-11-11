@@ -23,7 +23,6 @@ export class AdminInicioComponent implements OnInit {
     spaceBetween: 10,
     navigation: true,
     autoplay: true,
-    loop: true,
   };
 
   constructor(

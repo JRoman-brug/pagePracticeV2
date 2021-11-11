@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ICarouselId } from 'src/app/interfaces/carousel/carousel';
+import { CarouselService } from 'src/app/services/carousel/carousel.service';
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, SwiperOptions } from 'swiper';
 
@@ -11,10 +13,14 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 })
 export class InicioComponent implements OnInit {
 
-  productos:number[] = [1,2,3,4,5,6,7 ] 
-  imagenes: string[] = ["assets/NIKE_BANNER.png", "assets/82cc9b78-1585-44a5-9b07-d89f75f44327-profile_banner-480.jpeg","assets/38fb24becd9a52b0278f6e2a8f5d2315.jpg"]
-  
-  constructor() { }
+  productos: number[] = [1, 2, 3, 4, 5, 6, 7];
+  imagenes!: ICarouselId[];
+  constructor(private $carouselServ: CarouselService) {
+    // Obtengo las imagenes del carousel de firestore
+    $carouselServ.getImagenes().subscribe(resp => {
+      this.imagenes = resp
+    })
+  }
 
   ngOnInit(): void {
     console.log(this.imagenes)
@@ -27,10 +33,9 @@ export class InicioComponent implements OnInit {
     navigation: true,
     pagination: { clickable: true },
     autoplay: true,
-    loop: true,
   };
 
-  confiCarouselProductos:SwiperOptions = {
+  confiCarouselProductos: SwiperOptions = {
     slidesPerView: 3,
     spaceBetween: 100,
     navigation: true,
