@@ -1,0 +1,11 @@
+<div class="contenedor__modal">
+    <form class="formulario" [formGroup]="formulario">
+        <input type="text" pInputText placeholder="Pregunta" formControlName="pregunta">
+        <textarea pInputTextarea placeholder="Respuesta" formControlName="respuesta"></textarea>
+    </form>
+
+    <div class="container__buttons">
+        <button class="btn btn-danger"(click)="closeModal()">cancelar</button>
+        <button class="btn btn-success" (click)="submit()">Aceptar</button>
+    </div>
+</div>

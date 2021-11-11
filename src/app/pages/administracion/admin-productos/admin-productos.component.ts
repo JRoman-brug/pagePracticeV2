@@ -11,6 +11,7 @@ import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { ModalAddProductoComponent } from 'src/app/shared/modal-add-producto/modal-add-producto.component';
+import { ModalCategoriaComponent } from 'src/app/shared/modal-categoria/modal-categoria.component';
 import { ModalEditProductoComponent } from 'src/app/shared/modal-edit-producto/modal-edit-producto.component';
 
 @Component({
@@ -41,21 +42,28 @@ export class AdminProductosComponent implements OnInit {
   }
   // Modal editar producto
   AddProducto() {
-    const ref = this.dialogService.open(ModalAddProductoComponent, {
+    this.dialogService.open(ModalAddProductoComponent, {
       header: "Agregar un producto"
     })
   }
 
   // Modal editar producto
   editProducto(id: string) {
-    const ref = this.dialogService.open(ModalEditProductoComponent, {
+    this.dialogService.open(ModalEditProductoComponent, {
       data: {
         id: id
       },
       header: "Editar producto"
     })
+    
   }
 
+  // Modal administrar categorias
+  adminCategorias(){
+    this.dialogService.open(ModalCategoriaComponent, {
+      header: "Agregar un producto"
+    })
+  }
   // Eliminar producto
   deleteProducto(id: string) {
     this.$productoServ.deleteProducto(id).then(()=>{

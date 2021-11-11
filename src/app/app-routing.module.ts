@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
+import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
 import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
 import { Error404Component } from './pages/error404/error404.component';
@@ -35,6 +37,12 @@ const routes: Routes = [
     children:[
       {
         path:"Admin-Productos",component:AdminProductosComponent
+      },
+      {
+        path:"Admin-Inicio",component:AdminInicioComponent
+      },
+      {
+        path:"Admin-Preguntas-Frecuentes",component:AdminPreguntasFrecuentesComponent
       },
       {
         path:"",component:AdminProductosComponent, pathMatch:"full"

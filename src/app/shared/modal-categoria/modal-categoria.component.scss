@@ -1,0 +1,29 @@
+.contenedor__modal {
+    width: 600px;
+}
+
+.add_categorias {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.formulario{
+    padding: 5px 0;
+}
+.divider {
+    width: 100%;
+    height: 1px;
+    background: #d4d4d4;
+    margin: 15px 0;
+}
+.administrar__categorias {
+    height: 200px;
+    overflow-y: scroll;
+}
+.categoria{
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right:10px ;
+}

@@ -14,7 +14,8 @@ export class AdministracionComponent implements OnInit {
     this.items = [
       {
         label: 'Editar inicio',
-        icon: 'pi pi-fw pi-home'
+        icon: 'pi pi-fw pi-home',
+        routerLink:"Admin-Inicio"
       },
       {
         label: 'Productos',
@@ -23,11 +24,14 @@ export class AdministracionComponent implements OnInit {
       },
       {
         label: 'Temas de la pagina',
-        icon: 'pi pi-fw pi-pencil'
+        icon: 'pi pi-fw pi-pencil',
+        routerLink:"Admin-Productos"
+
       },
       {
         label: 'Preguntas frecuentes ',
-        icon: 'pi pi-fw pi-file'
+        icon: 'pi pi-fw pi-file',
+        routerLink:"Admin-Preguntas-Frecuentes" 
       },
     ];
   }

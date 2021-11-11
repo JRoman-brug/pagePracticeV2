@@ -1,0 +1,27 @@
+<p-table [value]="preguntas">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Pregunta</th>
+            <th></th>
+            <th>
+                <button class="btn btn-success" (click)="addPregunta()"><i class="pi pi-fw pi-plus"></i></button>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pregunta>
+        <tr>
+            <td>
+                <p>{{pregunta.pregunta}}</p>
+            </td>
+            <td> {{(pregunta.respuesta.length > 30) ? (pregunta.respuesta | slice: 0: 30) + '..' : (pregunta.respuesta)}}</td>
+            <td>
+                <div>
+                    <button class="btn btn-warning" (click)="editarPregunta(pregunta.id)"><i
+                            class="pi pi-fw pi-pencil"></i></button>
+                    <button class="btn btn-danger" (click)="deletePregunta(pregunta.id)"><i
+                            class="pi pi-fw pi-trash"></i></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

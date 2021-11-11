@@ -74,6 +74,10 @@ import { AdminProductosComponent } from './pages/administracion/admin-productos/
 import { ModalEditProductoComponent } from './shared/modal-edit-producto/modal-edit-producto.component';
 import { ModalAddProductoComponent } from './shared/modal-add-producto/modal-add-producto.component';
 import { ModalCategoriaComponent } from './shared/modal-categoria/modal-categoria.component';
+import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
+import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
+import { PreguntasFrecuentesAgregarComponent } from './modals/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
+import { PreguntasFrecuentesEditarComponent } from './modals/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +95,11 @@ import { ModalCategoriaComponent } from './shared/modal-categoria/modal-categori
     AdminProductosComponent,
     ModalEditProductoComponent,
     ModalAddProductoComponent,
-    ModalCategoriaComponent
+    ModalCategoriaComponent,
+    AdminInicioComponent,
+    AdminPreguntasFrecuentesComponent,
+    PreguntasFrecuentesAgregarComponent,
+    PreguntasFrecuentesEditarComponent,
   ],
   imports: [
     BrowserModule,

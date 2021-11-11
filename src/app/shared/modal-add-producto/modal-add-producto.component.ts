@@ -5,7 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ICategoriaId } from 'src/app/interfaces/categoria/categoria';
 import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
+import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -25,11 +27,9 @@ export class ModalAddProductoComponent implements OnInit {
   porcentaje: any = 0;
 
   // Categorias
-  opciones: string[] = [
-    "categoria1",
-    "categoria2",
-    "categoria3",
-  ]
+  opciones: string[] = [];
+  categorias!: ICategoriaId[];
+
 
   imagen!: any;
   imagen_path: string;
@@ -38,6 +38,7 @@ export class ModalAddProductoComponent implements OnInit {
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
     private $productoServ: ProductoService,
+    private $categoriaServ: CategoriasService,
     private $storage: StorageService,
     private fb: FormBuilder,
     private toast: ToastrService
@@ -50,10 +51,22 @@ export class ModalAddProductoComponent implements OnInit {
       img: ["", Validators.required]
     })
     this.imagen_path = ""
+
+    
+
   }
 
 
   ngOnInit() {
+    this.opciones = []
+    this.$categoriaServ.getCategorias().subscribe(resp=>{
+      this.categorias = resp
+      for (let categoria of this.categorias) {
+        this.opciones.push(categoria.categoria) 
+      }
+    })
+
+    
     this.imagen = "../../../assets/previsualizacion__imagen.png"
   }
   // Cierro el modal
@@ -103,7 +116,7 @@ export class ModalAddProductoComponent implements OnInit {
     let referencia = this.$storage.referenciaCloudStorage(file.name);
 
     // sube la imagen
-    await this.$storage.tareaCloudStorage(file.name, file).percentageChanges().toPromise().then((resp)=>{
+    await this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe((resp) => {
       // Comprueba el estado de subida de la imagen
       if (resp) {
         this.porcentaje = Math.round(resp)
@@ -143,7 +156,7 @@ export class ModalAddProductoComponent implements OnInit {
     // });
 
     await referencia.getDownloadURL().toPromise().then(resp => {
-      this.formulario.value.img = resp
+      this.formulario.value.img = resp;
     })
 
   }

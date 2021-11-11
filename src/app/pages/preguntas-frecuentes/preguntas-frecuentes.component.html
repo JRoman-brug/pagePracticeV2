@@ -6,7 +6,7 @@
         <!-- Todas las preguntas -->
         <p-accordion>
             <div *ngFor="let pregunta of preguntas">
-                <p-accordionTab  [header]="pregunta.pregunta">
+                <p-accordionTab  [header]="pregunta.pregunta!">
                    {{pregunta.respuesta}}
                 </p-accordionTab>
             </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IPreguntaId } from 'src/app/interfaces/pregunta/pregunta';
+import { PreguntasFrecuentesService } from 'src/app/services/preguntasFrecuentes/preguntas-frecuentes.service';
 
 @Component({
   selector: 'app-preguntas-frecuentes',
@@ -7,37 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreguntasFrecuentesComponent implements OnInit {
 
-  preguntas = [
-    {
-      pregunta:"Pregunta 1",
-      respuesta:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laborum, nulla mollitia sint ipsa tenetur esse molestiae assumenda expedita aliquid?"
-    },
-    {
-      pregunta:"Pregunta 1",
-      respuesta:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laborum, nulla mollitia sint ipsa tenetur esse molestiae assumenda expedita aliquid?"
-    },
-    {
-      pregunta:"Pregunta 1",
-      respuesta:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laborum, nulla mollitia sint ipsa tenetur esse molestiae assumenda expedita aliquid?"
-    },
-    {
-      pregunta:"Pregunta 1",
-      respuesta:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laborum, nulla mollitia sint ipsa tenetur esse molestiae assumenda expedita aliquid?"
-    },
-    {
-      pregunta:"Pregunta 1",
-      respuesta:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laborum, nulla mollitia sint ipsa tenetur esse molestiae assumenda expedita aliquid?"
-    },
-    {
-      pregunta:"Pregunta 1",
-      respuesta:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laborum, nulla mollitia sint ipsa tenetur esse molestiae assumenda expedita aliquid?"
-    },
-    {
-      pregunta:"Pregunta 1",
-      respuesta:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laborum, nulla mollitia sint ipsa tenetur esse molestiae assumenda expedita aliquid?"
-    }
-  ]
-  constructor() { }
+  preguntas!: IPreguntaId[];
+  constructor(private $preguntaServ: PreguntasFrecuentesService) {
+    this.$preguntaServ.getPreguntas().subscribe(resp=>{
+      this.preguntas = resp
+    })
+  }
 
   ngOnInit(): void {
   }

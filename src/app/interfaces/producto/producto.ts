@@ -3,10 +3,10 @@ export interface IProductoId extends IProducto{
 }   
 
 export interface IProducto {
-    nombre:string;
-    precio:number;
-    descripcion:string;
-    categoria:string;
-    img:string;
-    img_path:string;
+    nombre?:string;
+    precio?:number;
+    descripcion?:string;
+    categoria?:string;
+    img?:string;
+    img_path?:string;
 }

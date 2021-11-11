@@ -1,0 +1,22 @@
+:host ::ng-deep {
+    .p-inputtextarea {
+        height: 200px;
+    }
+}
+.contenedor__modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 400px;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container__buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

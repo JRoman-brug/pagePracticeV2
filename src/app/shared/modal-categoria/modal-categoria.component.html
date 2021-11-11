@@ -1,1 +1,16 @@
-<p>modal-categoria works!</p>
+<div class="contenedor__modal">
+    <div class="add_categorias">
+        <form class="formulario" [formGroup]="formulario">
+            <input type="text" pInputText placeholder="Agregar una categoria" formControlName="categoria">
+        </form>
+        <button class="btn btn-success" (click)="addCategoria($event)"> subir <i class="pi pi-fw pi-plus"></i></button>
+    </div>
+    <div class="divider"></div>
+    <div class="administrar__categorias">
+      <div class="categoria" *ngFor="let categoria of categorias">
+        <p>{{categoria.categoria}}</p>
+
+        <button class="btn btn-danger" (click)="deleteCategoria(categoria.id,categoria.categoria)"> Eliminar <i class="pi pi-fw pi-trash"></i></button>
+      </div>
+    </div>
+</div>

@@ -5,7 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ICategoria, ICategoriaId } from 'src/app/interfaces/categoria/categoria';
 import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
+import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -33,7 +35,9 @@ export class ModalEditProductoComponent implements OnInit {
     "categoria2",
     "categoria3",
   ]
+  categorias!: ICategoriaId[]
 
+  // Imagen
   imagen!: any;
 
   opcionSeleccionada!: string;
@@ -42,6 +46,7 @@ export class ModalEditProductoComponent implements OnInit {
     private config: DynamicDialogConfig,
     private $productoServ: ProductoService,
     private $storage: StorageService,
+    private $categoriaServ: CategoriasService,
     private fb: FormBuilder,
     private toast: ToastrService
   ) {
@@ -54,11 +59,23 @@ export class ModalEditProductoComponent implements OnInit {
     })
 
     this.image_path = "";
+    // // Obtengo las categorias
+    // this.$categoriaServ.getCategorias().subscribe(resp=>{
+    //   this.categorias = resp
+    // })
+
   }
 
-  // Cosas que tengo que hacer: poner un spin un hover
 
   ngOnInit() {
+    // Obtengo las categorias
+    this.opciones = []
+    this.$categoriaServ.getCategorias().subscribe(resp=>{
+      this.categorias = resp
+      for (let categoria of this.categorias) {
+        this.opciones.push(categoria.categoria) 
+      }
+    })
     // Obtengo el id del producto
     this.id = this.config.data.id
 
@@ -70,9 +87,14 @@ export class ModalEditProductoComponent implements OnInit {
         categoria: resp.categoria,
         descripcion: resp.descripcion,
       })
+      // Obtengo la imagen
       this.imagen = resp.img
     })
     this.formulario.value.img = this.imagen;
+
+
+
+
   }
   // Cierro el modal
   cancelModal() {
@@ -87,15 +109,17 @@ export class ModalEditProductoComponent implements OnInit {
       precio: this.formulario.value.precio,
       categoria: this.formulario.value.categoria,
       descripcion: this.formulario.value.descripcion,
-      img: this.formulario.value.img,
+      img: this.imagen,
       img_path: this.image_path
     }
+    console.log()
 
     // Actualizo la informacion
     this.$productoServ.updateProducto(this.id, producto)
 
     this.toast.success("Se actualizo correctamente el producto a la base de datos", "Se actualizo el producto", { positionClass: 'toast-bottom-right', closeButton: true })
     this.ref.close()
+
   }
 
   //Selecciono la imagen 

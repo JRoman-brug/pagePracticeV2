@@ -9,6 +9,9 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
 // PrimeNG servicio para filtrar
 import { PrimeNGConfig, SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
+import { CategoriasService } from 'src/app/services/categorias/categorias.service';
+import { IPreguntaId } from 'src/app/interfaces/pregunta/pregunta';
+import { ICategoria, ICategoriaId } from 'src/app/interfaces/categoria/categoria';
 
 @Component({
   selector: 'app-productos',
@@ -17,11 +20,8 @@ import { Router } from '@angular/router';
 })
 export class ProductosComponent implements OnInit {
 
-  opciones: string[] = [
-    "categoria1",
-    "categoria2",
-    "categoria3",
-  ]
+  opciones: string[] = [];
+  categorias!: ICategoriaId[]
 
 
   opcionSeleccionada: any = null;
@@ -31,10 +31,22 @@ export class ProductosComponent implements OnInit {
   sortField!: string;
 
   productos!: IProductoId[]
-  constructor(private $ProductoServ: ProductoService, private route: Router) {
+  constructor(
+    private $ProductoServ: ProductoService, 
+    private route: Router,
+    private $categoriaServ:CategoriasService
+    ) {
   }
 
   ngOnInit(): void {
+
+    this.opciones = []
+    this.$categoriaServ.getCategorias().subscribe(resp=>{
+      this.categorias = resp
+      for (let categoria of this.categorias) {
+        this.opciones.push(categoria.categoria) 
+      }
+    })
     // obtengo los productos de la base de datos
     this.changeProductos()
 
@@ -67,6 +79,7 @@ export class ProductosComponent implements OnInit {
     this.$ProductoServ.getProductos(this.opcionSeleccionada).subscribe(resp => {
       this.productos = resp;
     })
+    console.log(this.productos)
   }
 
   cleanOption() {
