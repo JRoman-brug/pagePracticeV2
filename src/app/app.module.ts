@@ -78,6 +78,7 @@ import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-
 import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
 import { PreguntasFrecuentesAgregarComponent } from './modals/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
 import { PreguntasFrecuentesEditarComponent } from './modals/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
+import { AddImagenComponent } from './modals/carousel/add-imagen/add-imagen.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { PreguntasFrecuentesEditarComponent } from './modals/preguntas-frecuente
     AdminPreguntasFrecuentesComponent,
     PreguntasFrecuentesAgregarComponent,
     PreguntasFrecuentesEditarComponent,
+    AddImagenComponent,
   ],
   imports: [
     BrowserModule,

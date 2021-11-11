@@ -1,0 +1,29 @@
+.container__carousel {
+    width: 80%;
+    margin: auto;
+}
+// carousel
+.carousel img {
+    width: 100%;
+    height: 475px;
+    object-fit: cover;
+}
+
+.container__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container__body {
+    display: grid;
+    grid-template-columns: 300px, 1fr;
+    grid-auto-rows: 100px;
+    gap: 20px;
+}
+
+.container__imagen__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

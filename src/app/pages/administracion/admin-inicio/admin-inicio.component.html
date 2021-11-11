@@ -1,1 +1,30 @@
-<p>admin-inicio works!</p>
+<div>
+    <div class="container__carousel">
+        <!-- Carousel -->
+        <swiper [config]="configCarousel">
+            <ng-template swiperSlide *ngFor="let imagen of imagenes">
+                <div class="carousel">
+                    <img [src]="imagen.imagen" alt="">
+                </div>
+            </ng-template>
+        </swiper>
+    </div>
+    <div>
+
+        <div class="container__header">
+            <p>Imagenes</p>
+            <button class="btn btn-success" (click)="addImagen()"><i class="pi pi-fw pi-plus"></i></button>
+        </div>
+
+        <div class="container__body">
+            <div *ngFor="let imagen of imagenes" class="container__imagen__item">
+                <img [src]="imagen.imagen" alt="" style="width: 300px; height: 100px; object-fit: cover;">
+
+                <!-- Contenedor de los botones de edicion -->
+                <div class="container__buttons">
+                    <button class="btn btn-danger" (click)="deleteImagen(imagen.id)"><i class="pi pi-fw pi-trash"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
