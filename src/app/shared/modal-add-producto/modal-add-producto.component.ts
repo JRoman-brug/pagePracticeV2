@@ -30,6 +30,8 @@ export class ModalAddProductoComponent implements OnInit {
   opciones: string[] = [];
   categorias!: ICategoriaId[];
 
+  // Referencia
+  referencia:any;
 
   imagen!: any;
   imagen_path: string;
@@ -75,7 +77,10 @@ export class ModalAddProductoComponent implements OnInit {
   }
 
   // Acepto los cambios
-  submit() {
+  async submit() {
+    await this.referencia.getDownloadURL().toPromise().then((resp:any) => {
+      this.formulario.value.img = resp;
+    })
     // Creo la nueva informacion
     const producto: IProducto = {
       nombre: this.formulario.value.nombre,
@@ -85,6 +90,7 @@ export class ModalAddProductoComponent implements OnInit {
       img: this.formulario.value.img,
       img_path: this.imagen_path
     }
+
 
     console.log(producto)
     // Agrego el producto
@@ -113,7 +119,7 @@ export class ModalAddProductoComponent implements OnInit {
     // Crea la referencia
 
 
-    let referencia = this.$storage.referenciaCloudStorage(file.name);
+    this.referencia =  this.$storage.referenciaCloudStorage(file.name);
 
     // sube la imagen
     await this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe((resp) => {
@@ -122,9 +128,12 @@ export class ModalAddProductoComponent implements OnInit {
         this.porcentaje = Math.round(resp)
         if (resp < 100) {
           this.estadoSubida = true;
+          
+          console.log(resp)
         }
         else {
           this.estadoSubida = false;
+          console.log(this.estadoSubida)
         }
       }
     })
@@ -155,9 +164,7 @@ export class ModalAddProductoComponent implements OnInit {
     //   }
     // });
 
-    await referencia.getDownloadURL().toPromise().then(resp => {
-      this.formulario.value.img = resp;
-    })
+   
 
   }
 
