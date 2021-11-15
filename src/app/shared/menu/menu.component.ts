@@ -10,14 +10,23 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuComponent implements OnInit {
 
-  // variables para personalizar
-  backgrond:string;
+  menu = "";
+ 
   constructor() {
-    this.backgrond="bg-primary"
   }
 
   ngOnInit(): void {
+  }
 
+  cambiarBoton() {
+    if (this.menu == "active") {
+      this.menu = ""
+      console.log(this.menu)
+    }
+    else {
+      this.menu = "active"
+      console.log(this.menu)
+    }
   }
 
 }

@@ -2,36 +2,36 @@
 // carousel
 .carousel img{
     width: 100%;
-    height: 475px;
+    height: 100vh;
     object-fit:  cover;
 }
 
-// about us
-.aboutUs{
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    width: 90%;
-    height: 450px;
-    margin: 30px auto;
-    border-radius: 4px;
-    background: #d0d0d0;
-    overflow: hidden;
-}
-.container__image{
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-}
-.container__image img{
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    object-fit: contain
-}
+// about us (no lo voy  a usar)
+// .aboutUs{
+//     display: grid;
+//     grid-template-columns: 1fr 1fr; 
+//     width: 90%;
+//     height: 450px;
+//     margin: 30px auto;
+//     border-radius: 4px;
+//     background: #d0d0d0;
+//     overflow: hidden;
+// }
+// .container__image{
+//     padding: 20px;
+//     width: 100%;
+//     height: 100%;
+// }
+// .container__image img{
+//     margin: auto;
+//     width: 100%;
+//     height: 100%;
+//     object-fit: contain
+// }
 
-.container__info{
-    padding: 20px;
-    text-align: center;
-    background: #d9d9d9;
-}
+// .container__info{
+//     padding: 20px;
+//     text-align: center;
+//     background: #d9d9d9;
+// }
 

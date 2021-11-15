@@ -1,0 +1,81 @@
+// configuracion del grid (contenedor)
+.mosaico {
+
+    width: 1000px;
+    height: 800px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    gap: 10px;
+    margin: 15px auto;
+    // background: red;
+}
+// Evitar que las imagenes se salgan del contenedor y animacion
+.mosaico div {
+    overflow: hidden;
+    transition: transform .3s ease;
+}
+.mosaico div:hover{
+    transform: scale(1.1);
+}
+
+// Imagenes
+.primer__imagen {
+    grid-column: 1/3;
+    grid-row: 1/2;
+    width: 100%;
+    height: 100%;
+    background: green;
+    transition: transform .3s ease;
+
+}
+.primer__imagen > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+}
+
+.segunda__imagen {
+    grid-column: 3/-1;
+    grid-row: 1/3;
+}
+.segunda__imagen > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.tercer__imagen {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.tercer__imagen > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+}
+
+.cuarta__imagen{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+.cuarta__imagen >img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+}
+
+.quinta__imagen{
+    grid-column: 1/-1;
+    grid-row: 3/4;
+}
+.quinta__imagen >img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+}
