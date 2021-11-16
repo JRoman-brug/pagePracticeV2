@@ -20,11 +20,12 @@ import { ICategoria, ICategoriaId } from 'src/app/interfaces/categoria/categoria
 })
 export class ProductosComponent implements OnInit {
 
+  // Opciones
   opciones: string[] = [];
   categorias!: ICategoriaId[]
-
-
   opcionSeleccionada: any = null;
+
+  // Opciones para ordenar por precio
   OpcionesPrecio!: SelectItem[];
 
   sortOrder!: number;
@@ -87,8 +88,6 @@ export class ProductosComponent implements OnInit {
     this.changeProductos()
   }
 
-  prueba() {
-    console.log(this.opcionSeleccionada)
-  }
+
 
 }

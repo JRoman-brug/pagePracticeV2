@@ -73,13 +73,13 @@ import { AdministracionComponent } from './pages/administracion/administracion.c
 import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
 import { ModalAddProductoComponent } from './modals/productos/modal-add-producto/modal-add-producto.component';
 import { ModalEditProductoComponent } from './modals/productos/modal-edit-producto/modal-edit-producto.component';
-import { ModalCategoriaComponent } from './shared/modal-categoria/modal-categoria.component';
+import { ModalCategoriaComponent } from './modals/categoria/modal-categoria/modal-categoria.component';
 import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
 import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
-import { PreguntasFrecuentesAgregarComponent } from './modals/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
-import { PreguntasFrecuentesEditarComponent } from './modals/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
 import { AddImagenComponent } from './modals/carousel/add-imagen/add-imagen.component';
 import { MosaicoComponent } from './shared/mosaico/mosaico.component';
+import { PreguntasFrecuentesAgregarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
+import { PreguntasFrecuentesEditarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
 
 @NgModule({
   declarations: [

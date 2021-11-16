@@ -4,15 +4,15 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 // Modals
-import { DialogService } from 'primeng/dynamicdialog';
-import { PreguntasFrecuentesAgregarComponent } from 'src/app/modals/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
+import { PreguntasFrecuentesAgregarComponent } from 'src/app/modals/preguntasFrecuentes/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
+import { PreguntasFrecuentesEditarComponent } from 'src/app/modals/preguntasFrecuentes/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
 
 // Interfaces
 import { IPregunta, IPreguntaId } from 'src/app/interfaces/pregunta/pregunta';
 
 // Servicio de preguntass
+import { DialogService } from 'primeng/dynamicdialog';
 import { PreguntasFrecuentesService } from 'src/app/services/preguntasFrecuentes/preguntas-frecuentes.service';
-import { PreguntasFrecuentesEditarComponent } from 'src/app/modals/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
 
 
 @Component({

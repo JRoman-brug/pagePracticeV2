@@ -14,7 +14,7 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 // Modales
 import { ModalAddProductoComponent } from 'src/app/modals/productos/modal-add-producto/modal-add-producto.component';
 import { ModalEditProductoComponent } from 'src/app/modals/productos/modal-edit-producto/modal-edit-producto.component';
-import { ModalCategoriaComponent } from 'src/app/shared/modal-categoria/modal-categoria.component';
+import { ModalCategoriaComponent } from 'src/app/modals/categoria/modal-categoria/modal-categoria.component';
 
 @Component({
   selector: 'app-admin-productos',

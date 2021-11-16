@@ -129,35 +129,6 @@ export class ModalAddProductoComponent implements OnInit {
         }
       }
     })
-
-
-    // .toPromise().then((resp)=>{
-    //   // Comprueba el estado de subida de la imagen
-    //   if (resp) {
-    //     this.porcentaje = Math.round(resp)
-    //     if (resp < 100) {
-    //       this.estadoSubida = true;
-    //     }
-    //     else {
-    //       this.estadoSubida = false;
-    //     }
-    //   }
-    // })
-    // .subscribe(resp => {
-    //   // Comprueba el estado de subida de la imagen
-    //   if (resp) {
-    //     this.porcentaje = Math.round(resp)
-    //     if (resp < 100) {
-    //       this.estadoSubida = true;
-    //     }
-    //     else {
-    //       this.estadoSubida = false;
-    //     }
-    //   }
-    // });
-
-   
-
   }
 
 }
