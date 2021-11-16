@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Toast, ToastrService } from 'ngx-toastr';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ICarousel, ICarouselId } from 'src/app/interfaces/carousel/carousel';
 import { AddImagenComponent } from 'src/app/modals/carousel/add-imagen/add-imagen.component';
@@ -27,7 +28,8 @@ export class AdminInicioComponent implements OnInit {
 
   constructor(
     private $carouselServ: CarouselService,
-    public dialogService: DialogService,
+    private dialogService: DialogService,
+    private toast:ToastrService
   ) {
     // Obtengo las imaganes de firestore
     $carouselServ.getImagenes().subscribe(resp => {
@@ -46,6 +48,7 @@ export class AdminInicioComponent implements OnInit {
 
   // Elimino una imagen
   deleteImagen(id: string) {
+    this.toast.error("Se elimino correctamente la imagen del carousel", "Se elimino correctamente",{positionClass:"toast-bottom-right"})
     this.$carouselServ.deleteImagen(id);
   }
 }

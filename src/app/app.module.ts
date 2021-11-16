@@ -71,8 +71,8 @@ import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/pregu
 import { PruebasComponent } from './pages/pruebas/pruebas.component';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
 import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
-import { ModalEditProductoComponent } from './shared/modal-edit-producto/modal-edit-producto.component';
-import { ModalAddProductoComponent } from './shared/modal-add-producto/modal-add-producto.component';
+import { ModalAddProductoComponent } from './modals/productos/modal-add-producto/modal-add-producto.component';
+import { ModalEditProductoComponent } from './modals/productos/modal-edit-producto/modal-edit-producto.component';
 import { ModalCategoriaComponent } from './shared/modal-categoria/modal-categoria.component';
 import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
 import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';

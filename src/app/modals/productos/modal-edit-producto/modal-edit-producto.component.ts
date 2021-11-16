@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { ICategoriaId } from 'src/app/interfaces/categoria/categoria';
+import { ICategoria, ICategoriaId } from 'src/app/interfaces/categoria/categoria';
 import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
-
 @Component({
-  selector: 'app-modal-add-producto',
-  templateUrl: './modal-add-producto.component.html',
-  styleUrls: ['./modal-add-producto.component.scss']
+  selector: 'app-modal-edit-producto',
+  templateUrl: './modal-edit-producto.component.html',
+  styleUrls: ['./modal-edit-producto.component.scss']
 })
-export class ModalAddProductoComponent implements OnInit {
+export class ModalEditProductoComponent implements OnInit {
 
+  // Id del producto
+  id: any;
   // Estado del subida de la imagen
   estadoSubida: boolean = false;
 
@@ -26,22 +27,29 @@ export class ModalAddProductoComponent implements OnInit {
   formulario: FormGroup
   porcentaje: any = 0;
 
+  image_path: string;
+
   // Categorias
-  opciones: string[] = [];
-  categorias!: ICategoriaId[];
+  opciones: string[] = [
+    "categoria1",
+    "categoria2",
+    "categoria3",
+  ]
+  categorias!: ICategoriaId[]
 
-  // Referencia
-  referencia:any;
-
+  // Imagen
   imagen!: any;
-  imagen_path: string;
+
+
+  // Referencia de la imagen
+  referencia:any;
   opcionSeleccionada!: string;
   constructor(
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
     private $productoServ: ProductoService,
-    private $categoriaServ: CategoriasService,
     private $storage: StorageService,
+    private $categoriaServ: CategoriasService,
     private fb: FormBuilder,
     private toast: ToastrService
   ) {
@@ -52,14 +60,18 @@ export class ModalAddProductoComponent implements OnInit {
       descripcion: ["", Validators.required],
       img: ["", Validators.required]
     })
-    this.imagen_path = ""
 
-    
+    this.image_path = "";
+    // // Obtengo las categorias
+    // this.$categoriaServ.getCategorias().subscribe(resp=>{
+    //   this.categorias = resp
+    // })
 
   }
 
 
   ngOnInit() {
+    // Obtengo las categorias
     this.opciones = []
     this.$categoriaServ.getCategorias().subscribe(resp=>{
       this.categorias = resp
@@ -67,9 +79,25 @@ export class ModalAddProductoComponent implements OnInit {
         this.opciones.push(categoria.categoria) 
       }
     })
+    // Obtengo el id del producto
+    this.id = this.config.data.id
 
-    
-    this.imagen = "../../../assets/previsualizacion__imagen.png"
+    // Obtengo el producto que estoy necesitando
+    this.$productoServ.getProducto(this.id).subscribe(resp => {
+      this.formulario.patchValue({
+        nombre: resp.nombre,
+        precio: resp.precio,
+        categoria: resp.categoria,
+        descripcion: resp.descripcion,
+      })
+      // Obtengo la imagen
+      this.imagen = resp.img
+    })
+    this.formulario.value.img = this.imagen;
+
+
+
+
   }
   // Cierro el modal
   cancelModal() {
@@ -79,7 +107,7 @@ export class ModalAddProductoComponent implements OnInit {
   // Acepto los cambios
   async submit() {
     await this.referencia.getDownloadURL().toPromise().then((resp:any) => {
-      this.formulario.value.img = resp;
+      this.formulario.value.img = resp
     })
     // Creo la nueva informacion
     const producto: IProducto = {
@@ -87,24 +115,23 @@ export class ModalAddProductoComponent implements OnInit {
       precio: this.formulario.value.precio,
       categoria: this.formulario.value.categoria,
       descripcion: this.formulario.value.descripcion,
-      img: this.formulario.value.img,
-      img_path: this.imagen_path
+      img: this.imagen,
+      img_path: this.image_path
     }
 
 
-    console.log(producto)
-    // Agrego el producto
-    this.$productoServ.addProducto(producto)
+    // Actualizo la informacion
+    this.$productoServ.updateProducto(this.id, producto)
 
-    this.toast.success("Se agrego correctamente el producto a la base de datos", "Se agrego el producto", { positionClass: 'toast-bottom-right', closeButton: true })
+    this.toast.success("Se actualizo correctamente el producto a la base de datos", "Se actualizo el producto", { positionClass: 'toast-bottom-right', closeButton: true })
     this.ref.close()
+
   }
 
   //Selecciono la imagen 
   async selectImage(event: any) {
     const file = event.target.files[0];
-
-    this.imagen_path = file.name;
+    this.image_path = file.name
     // Obtengo el base64 de la imagen
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -114,58 +141,25 @@ export class ModalAddProductoComponent implements OnInit {
 
 
     // Subo la imagen
+    // crea la referencia 
 
-    let prueba = `${file}${file.name}`;
-    // Crea la referencia
-
-
-    this.referencia =  this.$storage.referenciaCloudStorage(file.name);
+    this.referencia = await this.$storage.referenciaCloudStorage(file.name);
 
     // sube la imagen
-    await this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe((resp) => {
+    this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe(resp => {
       // Comprueba el estado de subida de la imagen
       if (resp) {
         this.porcentaje = Math.round(resp)
         if (resp < 100) {
           this.estadoSubida = true;
-          
-          console.log(resp)
         }
         else {
           this.estadoSubida = false;
-          console.log(this.estadoSubida)
         }
       }
-    })
+    });
 
-
-    // .toPromise().then((resp)=>{
-    //   // Comprueba el estado de subida de la imagen
-    //   if (resp) {
-    //     this.porcentaje = Math.round(resp)
-    //     if (resp < 100) {
-    //       this.estadoSubida = true;
-    //     }
-    //     else {
-    //       this.estadoSubida = false;
-    //     }
-    //   }
-    // })
-    // .subscribe(resp => {
-    //   // Comprueba el estado de subida de la imagen
-    //   if (resp) {
-    //     this.porcentaje = Math.round(resp)
-    //     if (resp < 100) {
-    //       this.estadoSubida = true;
-    //     }
-    //     else {
-    //       this.estadoSubida = false;
-    //     }
-    //   }
-    // });
-
-   
-
+    
   }
 
 }

@@ -10,9 +10,11 @@ import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
 // Services firebase productos
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
-import { ModalAddProductoComponent } from 'src/app/shared/modal-add-producto/modal-add-producto.component';
+
+// Modales
+import { ModalAddProductoComponent } from 'src/app/modals/productos/modal-add-producto/modal-add-producto.component';
+import { ModalEditProductoComponent } from 'src/app/modals/productos/modal-edit-producto/modal-edit-producto.component';
 import { ModalCategoriaComponent } from 'src/app/shared/modal-categoria/modal-categoria.component';
-import { ModalEditProductoComponent } from 'src/app/shared/modal-edit-producto/modal-edit-producto.component';
 
 @Component({
   selector: 'app-admin-productos',

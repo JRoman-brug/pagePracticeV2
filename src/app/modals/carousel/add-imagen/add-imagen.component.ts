@@ -13,6 +13,7 @@ export class AddImagenComponent implements OnInit {
   imagen!: any;
   imagen_path: string;
 
+  referencia:any;
 
   imagenRefe: string;
   constructor(
@@ -32,7 +33,10 @@ export class AddImagenComponent implements OnInit {
     this.ref.close()
   }
 
-  submit() {
+  async submit() {
+    await this.referencia.getDownloadURL().toPromise().then((resp:any) => {
+      this.imagenRefe = resp;
+    })
     const imagen: ICarousel = {
       imagen:this.imagenRefe
     }
@@ -55,18 +59,14 @@ export class AddImagenComponent implements OnInit {
 
 
     // Subo la imagen
-
-    let prueba = `${file}${file.name}`;
     // Crea la referencia
 
 
-    let referencia = this.$carouselServ.referenciaCloudStorage(file.name);
+    this.referencia = this.$carouselServ.referenciaCloudStorage(file.name);
 
     // sube la imagen
     await this.$carouselServ.tareaCloudStorage(file.name, file)
 
-    await referencia.getDownloadURL().toPromise().then(resp => {
-      this.imagenRefe = resp;
-    })
+    
   }
 }
