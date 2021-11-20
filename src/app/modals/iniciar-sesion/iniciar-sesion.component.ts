@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IniciarSesionComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogService: DialogService,
+  ) { }
 
   ngOnInit(): void {
   }
-  submit(){
-    
-  }
+
+  
 }

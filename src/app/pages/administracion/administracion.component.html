@@ -1,5 +1,6 @@
 <div class="contenedor__general">
     <div class="control__panel">
+        <!-- Menu de admin -->
         <p-tabMenu [model]="items">
             <ng-template pTemplate="item" let-item let-i="index">
                 <span>
@@ -8,6 +9,7 @@
                 </span>
             </ng-template>
         </p-tabMenu>
+        <!-- Diferentes de pestañas -->
         <div class="content">
             <router-outlet></router-outlet>
         </div>

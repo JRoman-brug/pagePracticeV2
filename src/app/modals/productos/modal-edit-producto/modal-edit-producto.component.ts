@@ -20,8 +20,9 @@ export class ModalEditProductoComponent implements OnInit {
 
   // Id del producto
   id: any;
-  // Estado del subida de la imagen
-  estadoSubida: boolean = false;
+
+  // Estado de la descargar (desabilita el boton de aceptar)
+  stateDownload: boolean = false;
 
   // Formulario
   formulario: FormGroup
@@ -42,7 +43,7 @@ export class ModalEditProductoComponent implements OnInit {
 
 
   // Referencia de la imagen
-  referencia:any;
+  referencia: any;
   opcionSeleccionada!: string;
   constructor(
     private ref: DynamicDialogRef,
@@ -73,10 +74,10 @@ export class ModalEditProductoComponent implements OnInit {
   ngOnInit() {
     // Obtengo las categorias
     this.opciones = []
-    this.$categoriaServ.getCategorias().subscribe(resp=>{
+    this.$categoriaServ.getCategorias().subscribe(resp => {
       this.categorias = resp
       for (let categoria of this.categorias) {
-        this.opciones.push(categoria.categoria) 
+        this.opciones.push(categoria.categoria)
       }
     })
     // Obtengo el id del producto
@@ -106,7 +107,7 @@ export class ModalEditProductoComponent implements OnInit {
 
   // Acepto los cambios
   async submit() {
-    await this.referencia.getDownloadURL().toPromise().then((resp:any) => {
+    await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
       this.formulario.value.img = resp
     })
     // Creo la nueva informacion
@@ -115,7 +116,7 @@ export class ModalEditProductoComponent implements OnInit {
       precio: this.formulario.value.precio,
       categoria: this.formulario.value.categoria,
       descripcion: this.formulario.value.descripcion,
-      img: this.imagen,
+      img: this.formulario.value.img,
       img_path: this.image_path
     }
 
@@ -130,7 +131,13 @@ export class ModalEditProductoComponent implements OnInit {
 
   //Selecciono la imagen 
   async selectImage(event: any) {
+
+    // Cambio el estado para bloquear el boton
+    this.stateDownload = true;
+
+    // Obtengo la imagen
     const file = event.target.files[0];
+    // Nombre de la imagen
     this.image_path = file.name
     // Obtengo el base64 de la imagen
     const reader = new FileReader();
@@ -146,20 +153,16 @@ export class ModalEditProductoComponent implements OnInit {
     this.referencia = await this.$storage.referenciaCloudStorage(file.name);
 
     // sube la imagen
-    this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe(resp => {
-      // Comprueba el estado de subida de la imagen
-      if (resp) {
-        this.porcentaje = Math.round(resp)
-        if (resp < 100) {
-          this.estadoSubida = true;
-        }
-        else {
-          this.estadoSubida = false;
-        }
-      }
-    });
+    this.$storage.tareaCloudStorage(file.name, file)
 
-    
+    // sube la imagen
+    await this.$storage.tareaCloudStorage(file.name, file);
+
+    await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
+      this.formulario.value.img = resp;
+    })
+    // Cambio el estado para bloquear el boton
+    this.stateDownload = false;
   }
 
 }

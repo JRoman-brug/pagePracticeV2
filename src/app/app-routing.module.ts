@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IniciarSesionComponent } from './modals/iniciar-sesion/iniciar-sesion.component';
 import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
 import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
 import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
 import { Error404Component } from './pages/error404/error404.component';
-import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciar-sesion.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { ProductoComponent } from './pages/producto/producto.component';

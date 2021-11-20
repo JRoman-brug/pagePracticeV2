@@ -66,7 +66,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { ProductoComponent } from './pages/producto/producto.component';
-import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciar-sesion.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { PruebasComponent } from './pages/pruebas/pruebas.component';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
@@ -80,6 +79,7 @@ import { AddImagenComponent } from './modals/carousel/add-imagen/add-imagen.comp
 import { MosaicoComponent } from './shared/mosaico/mosaico.component';
 import { PreguntasFrecuentesAgregarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
 import { PreguntasFrecuentesEditarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
+import { IniciarSesionComponent } from './modals/iniciar-sesion/iniciar-sesion.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +90,6 @@ import { PreguntasFrecuentesEditarComponent } from './modals/preguntasFrecuentes
     InicioComponent,
     Error404Component,
     ProductoComponent,
-    IniciarSesionComponent,
     PreguntasFrecuentesComponent,
     PruebasComponent,
     AdministracionComponent,
@@ -104,6 +103,7 @@ import { PreguntasFrecuentesEditarComponent } from './modals/preguntasFrecuentes
     PreguntasFrecuentesEditarComponent,
     AddImagenComponent,
     MosaicoComponent,
+    IniciarSesionComponent
   ],
   imports: [
     BrowserModule,

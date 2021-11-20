@@ -1,9 +1,20 @@
-<div>
-    <div>
+<div class="contenedor__general">
+    <div class="container__image">
+        <img [src]="imagen">
+            <!-- hover con icono de subir -->
+            <div class="upload__image" *ngIf="!stateDownload">
+                <i class="fas fa-upload"></i>
+            </div>
+            <!-- Icono de carga -->
+            <div class="charge__image" *ngIf="stateDownload" ></div>
+            <div class="container__spin" *ngIf="stateDownload">
+                <i class="fas fa-spinner"></i>
+            </div>
+
         <input type="file" (change)="selectImage($event)">
     </div>
     <div class="container__buttons">
         <button class="btn btn-danger" (click)="closeModal()">Cancelar</button>
-        <button class="btn btn-success" (click)="submit()">Aceptar</button>
+        <button class="btn btn-success" (click)="submit()" [disabled]="stateDownload">Aceptar</button>
     </div>
 </div>

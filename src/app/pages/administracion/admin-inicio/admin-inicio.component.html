@@ -9,20 +9,23 @@
             </ng-template>
         </swiper>
     </div>
+
+    <!-- Adminitracion de imagenes -->
     <div class="container__admin__carousel">
 
+        <!-- Header -->
         <div class="container__header">
-            <p>Imagenes</p>
-            <button class="btn btn-success" (click)="addImagen()"><i class="pi pi-fw pi-plus"></i></button>
+            <span class="header__span">Imagenes</span>
+            <button class="btn btn-success" (click)="addImagen()">Agregar imagen <i class="pi pi-fw pi-plus"></i></button>
         </div>
 
         <div class="container__body">
             <div *ngFor="let imagen of imagenes" class="container__imagen__item">
-                <img [src]="imagen.imagen" alt="" style="width: 300px; height: 100px; object-fit: cover;">
+                <img [src]="imagen.imagen" alt="">
 
                 <!-- Contenedor de los botones de edicion -->
                 <div class="container__buttons">
-                    <button class="btn btn-danger" (click)="deleteImagen(imagen.id)"><i class="pi pi-fw pi-trash"></i></button>
+                    <button class="btn btn-danger" (click)="deleteImagen(imagen.id)">Eliminar imagen <i class="pi pi-fw pi-trash"></i></button>
                 </div>
             </div>
         </div>

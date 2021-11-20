@@ -68,13 +68,7 @@ export class AdminProductosComponent implements OnInit {
   }
   // Eliminar producto
   deleteProducto(id: string) {
-    this.$productoServ.deleteProducto(id).then(()=>{
-      // this.$productoServ.getProducto(id).subscribe(resp=>{
-      //   imagen_path = resp.img_path;
-      // })
-
-      // this.$storage.eliminarArchivo(imagen_path)
-    })
+    this.$productoServ.deleteProducto(id)
     this.toast.error("El producto se elimino correctamente", "El producto se elimino", { positionClass: 'toast-bottom-right', closeButton: true })
   }
 }

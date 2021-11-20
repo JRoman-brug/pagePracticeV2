@@ -9,26 +9,50 @@
     object-fit: cover;
 }
 
-
-.container__admin__carousel{
-    width: 70%;
+// Contenedor general de la tabla de imagenes
+.container__admin__carousel {
+    width: 80%;
     margin: auto;
 }
+// Contenedor del header 
 .container__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 10px 0;
+    border-radius: 4px;
+    padding: 10px;
+    background: #fff;
 }
+// Span del header
+.header__span{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+// Cuerpo de las imagenes
 .container__body {
     display: grid;
-    grid-template-columns: 300px, 1fr;
-    grid-auto-rows: 100px;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 120px;
     gap: 20px;
 }
 
+// Imagenes del carousel
 .container__imagen__item {
+    width: 100%;
+    height:  100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 10px;
+    background: #fff;
+}
+.container__imagen__item img {
+    width: 300px;
+    height: 100px;
+    object-fit: cover;
 }

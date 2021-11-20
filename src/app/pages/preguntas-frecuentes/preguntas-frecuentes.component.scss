@@ -2,7 +2,7 @@
 .contenedor__general{
     width: 90%;
     display: flex;
-    min-height: 400px;
+    min-height: 70vh;
     height: fit-content;
     margin: 80px auto;
 }
@@ -11,4 +11,11 @@
     height: fit-content;
     margin: auto;
 
+}
+
+
+:host::ng-deep{
+    .p-accordion{
+        width: 90vw;
+    }	
 }

@@ -9,11 +9,14 @@ import { CarouselService } from 'src/app/services/carousel/carousel.service';
   styleUrls: ['./add-imagen.component.scss']
 })
 export class AddImagenComponent implements OnInit {
-
-  imagen!: any;
+  // Imagen
+  imagen: any ="../../../../assets/previsualizacion__imagen.png";
+  // Ruta de la imagen de firebase
   imagen_path: string;
 
-  referencia:any;
+  referencia: any;
+  // Estado de la descargar (desabilita el boton de aceptar)
+  stateDownload: boolean = false;
 
   imagenRefe: string;
   constructor(
@@ -34,19 +37,25 @@ export class AddImagenComponent implements OnInit {
   }
 
   async submit() {
-    await this.referencia.getDownloadURL().toPromise().then((resp:any) => {
-      this.imagenRefe = resp;
-    })
+
+    // Armo el objeto del carousel
     const imagen: ICarousel = {
-      imagen:this.imagenRefe
+      imagen: this.imagenRefe
     }
 
     this.$carouselServ.addImagen(imagen);
 
     this.closeModal();
   }
+
+  
   //Selecciono la imagen 
   async selectImage(event: any) {
+
+    // Cambio el estado para bloquear el boton
+    this.stateDownload = true;
+
+    // Obtengo el archivo de la imagen
     const file = event.target.files[0];
 
     this.imagen_path = file.name;
@@ -65,8 +74,12 @@ export class AddImagenComponent implements OnInit {
     this.referencia = this.$carouselServ.referenciaCloudStorage(file.name);
 
     // sube la imagen
-    await this.$carouselServ.tareaCloudStorage(file.name, file)
+    await this.$carouselServ.tareaCloudStorage(file.name, file);
 
-    
+    await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
+      this.imagenRefe = resp;
+    })
+    // Cambio el estado para bloquear el boton
+    this.stateDownload = false;
   }
 }

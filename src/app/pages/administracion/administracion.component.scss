@@ -5,6 +5,7 @@
     margin: 10 auto;
 }
 
+// Ventana de administracion 
 .control__panel{
     width: 1200px;
     height: 600px;
@@ -16,6 +17,7 @@
 }
 .content{
     height: 90%;
+    padding: 10px 0;
     overflow-y: scroll;
 }
 :host ::ng-deep{

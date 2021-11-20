@@ -1,7 +1,94 @@
+// Variable de alto y ancho de las imagenes
+$altoImg:250px;
+$anchoImg:400px;
+
+// Contenedor general
+.contenedor__general{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+}
+
+// contenedor de botones
 .container__buttons{
     width: 100%;
     height: 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+
+// Contenedor del input imagen
+.container__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: $altoImg;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+// Input type file
+.container__image input {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+// Imagen de previsualizacion 
+.container__image img {
+    border-radius: 4px;
+    width: 100%;
+    height: $altoImg;
+    object-fit: cover;
+}
+
+// hover con icono de subir
+.upload__image {
+    opacity: 0;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    font-size: 40px;
+    color: #fff;
+    background: rgba($color: #000000, $alpha: 0.6);
+    transition: 0.3s ease opacity;
+}
+.container__image:hover .upload__image {
+    opacity: 1;
+}
+.upload__image i{
+  margin: auto;
+}
+
+// contenedor del spin de carga
+.charge__image {
+    position: absolute;
+    width: 500px;
+    height: $altoImg;
+    background: #000;
+    opacity: 0.6;
+    border-radius: 4px;
+}
+// Spin de carga
+.container__spin {
+    position: absolute;
+    font-size: 30px;
+    color: white;
+    animation: spin infinite 1s;
+}
+// Animacion del spin
+@keyframes spin {
+    0% {
+        transform: rotate(360deg);
+    }
 }

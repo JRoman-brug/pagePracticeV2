@@ -48,7 +48,7 @@ export class AdminInicioComponent implements OnInit {
 
   // Elimino una imagen
   deleteImagen(id: string) {
-    this.toast.error("Se elimino correctamente la imagen del carousel", "Se elimino correctamente",{positionClass:"toast-bottom-right"})
+    this.toast.error("Se elimino correctamente la imagen del carousel", "Se elimino correctamente",{positionClass:"toast-bottom-right", closeButton: true })
     this.$carouselServ.deleteImagen(id);
   }
 }

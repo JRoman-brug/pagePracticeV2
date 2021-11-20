@@ -36,8 +36,8 @@
                 <i class="fas fa-upload"></i>
             </div>
             <!-- Icono de carga -->
-            <div class="charge__image" *ngIf="estadoSubida" ></div>
-            <div class="container__spin" *ngIf="estadoSubida">
+            <div class="charge__image" *ngIf="stateDownload" ></div>
+            <div class="container__spin" *ngIf="stateDownload">
                 <i class="fas fa-spinner"></i>
             </div>
 
@@ -55,6 +55,6 @@
     <!-- contenedor de los botones -->
     <div class="container__button">
         <button class="btn btn-danger" (click)="cancelModal()">Cancelar</button>
-        <button class="btn btn-success" (click)="submit()" [disabled]="estadoSubida">Aceptar</button>
+        <button class="btn btn-success" (click)="submit()" [disabled]="stateDownload">Aceptar</button>
     </div>
 </div>

@@ -19,8 +19,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class ModalAddProductoComponent implements OnInit {
 
-  // Estado del subida de la imagen
-  estadoSubida: boolean = false;
+  // Estado de la descargar (desabilita el boton de aceptar)
+  stateDownload: boolean = false;
 
   // Formulario
   formulario: FormGroup
@@ -31,7 +31,7 @@ export class ModalAddProductoComponent implements OnInit {
   categorias!: ICategoriaId[];
 
   // Referencia
-  referencia:any;
+  referencia: any;
 
   imagen!: any;
   imagen_path: string;
@@ -54,21 +54,21 @@ export class ModalAddProductoComponent implements OnInit {
     })
     this.imagen_path = ""
 
-    
+
 
   }
 
 
   ngOnInit() {
     this.opciones = []
-    this.$categoriaServ.getCategorias().subscribe(resp=>{
+    this.$categoriaServ.getCategorias().subscribe(resp => {
       this.categorias = resp
       for (let categoria of this.categorias) {
-        this.opciones.push(categoria.categoria) 
+        this.opciones.push(categoria.categoria)
       }
     })
 
-    
+
     this.imagen = "../../../assets/previsualizacion__imagen.png"
   }
   // Cierro el modal
@@ -78,10 +78,6 @@ export class ModalAddProductoComponent implements OnInit {
 
   // Acepto los cambios
   async submit() {
-  // Obtengo la imagen
-    await this.referencia.getDownloadURL().toPromise().then((resp:any) => {
-      this.formulario.value.img = resp;
-    })
     // Creo la nueva informacion
     const producto: IProducto = {
       nombre: this.formulario.value.nombre,
@@ -101,6 +97,9 @@ export class ModalAddProductoComponent implements OnInit {
 
   //Selecciono la imagen 
   async selectImage(event: any) {
+    // Cambio el estado para bloquear el boton
+    this.stateDownload=true;
+
     const file = event.target.files[0];
 
     this.imagen_path = file.name;
@@ -114,21 +113,17 @@ export class ModalAddProductoComponent implements OnInit {
 
     // Subo la imagen
     // Crea la referencia
-    this.referencia =  this.$storage.referenciaCloudStorage(file.name);
+    this.referencia = this.$storage.referenciaCloudStorage(file.name);
 
     // sube la imagen
-    await this.$storage.tareaCloudStorage(file.name, file).percentageChanges().subscribe((resp) => {
-      // Comprueba el estado de subida de la imagen
-      if (resp) {
-        this.porcentaje = Math.round(resp)
-        if (resp < 100) {
-          this.estadoSubida = true;
-        }
-        else {
-          this.estadoSubida = false;
-        }
-      }
+    await this.$storage.tareaCloudStorage(file.name, file);
+
+    await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
+      this.formulario.value.img = resp;
+      console.log(this.stateDownload)
     })
+    // Cambio el estado para bloquear el boton
+    this.stateDownload = false;
   }
 
 }

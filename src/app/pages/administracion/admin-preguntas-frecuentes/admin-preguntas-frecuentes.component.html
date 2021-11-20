@@ -1,21 +1,28 @@
+<!-- Adminitrador de preguntas frecuentes -->
 <p-table [value]="preguntas">
+    <!-- Header -->
     <ng-template pTemplate="header">
-        <tr>
-            <th>Pregunta</th>
-            <th></th>
-            <th>
+        <tr class="header">
+            <th style="min-width: 480px;">Pregunta</th>
+            <th style="min-width: 480px;"></th>
+            <!-- Boton de agregar boton -->
+            <th style="min-width: 205px;" class="contenedor__header__button">
                 <button class="btn btn-success" (click)="addPregunta()"><i class="pi pi-fw pi-plus"></i></button>
             </th>
         </tr>
     </ng-template>
+    <!-- Preguntas con respuestas -->
     <ng-template pTemplate="body" let-pregunta>
         <tr>
+            <!-- Pregunta -->
             <td>
                 <p>{{pregunta.pregunta}}</p>
             </td>
+            <!-- Respuesta (llega hasta 30 caracteres) -->
             <td> {{(pregunta.respuesta.length > 30) ? (pregunta.respuesta | slice: 0: 30) + '..' : (pregunta.respuesta)}}</td>
+            <!-- botones de acciones -->
             <td>
-                <div>
+                <div class="container__button">
                     <button class="btn btn-warning" (click)="editarPregunta(pregunta.id)"><i
                             class="pi pi-fw pi-pencil"></i></button>
                     <button class="btn btn-danger" (click)="deletePregunta(pregunta.id)"><i

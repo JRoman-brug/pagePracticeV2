@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 // Menu settings
 import { MenuItem } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
+import { IniciarSesionComponent } from 'src/app/modals/iniciar-sesion/iniciar-sesion.component';
 
 @Component({
   selector: 'app-menu',
@@ -12,12 +14,17 @@ export class MenuComponent implements OnInit {
 
   menu = "";
  
-  constructor() {
+  constructor(public dialogService: DialogService,) {
   }
 
   ngOnInit(): void {
   }
 
+  abrirInicioSesion(){
+    this.dialogService.open(IniciarSesionComponent,{
+      header:"Iniciar sesión"
+    })
+  }
   cambiarBoton() {
     if (this.menu == "active") {
       this.menu = ""
