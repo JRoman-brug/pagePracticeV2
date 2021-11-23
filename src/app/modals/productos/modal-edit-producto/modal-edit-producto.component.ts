@@ -28,22 +28,24 @@ export class ModalEditProductoComponent implements OnInit {
   formulario: FormGroup
   porcentaje: any = 0;
 
-  image_path: string;
 
   // Categorias
-  opciones: string[] = [
-    "categoria1",
-    "categoria2",
-    "categoria3",
-  ]
+  opciones!: string[]
   categorias!: ICategoriaId[]
-
-  // Imagen
-  imagen!: any;
-
 
   // Referencia de la imagen
   referencia: any;
+
+  // img para previsualizar
+  imagen!: any;
+
+  // Link imagen
+  imagenRef!: string;
+
+  // Path de la imagen
+  imagen_path: string;
+
+
   opcionSeleccionada!: string;
   constructor(
     private ref: DynamicDialogRef,
@@ -59,15 +61,9 @@ export class ModalEditProductoComponent implements OnInit {
       precio: ["", Validators.required],
       categoria: ["", Validators.required],
       descripcion: ["", Validators.required],
-      img: ["", Validators.required]
     })
 
-    this.image_path = "";
-    // // Obtengo las categorias
-    // this.$categoriaServ.getCategorias().subscribe(resp=>{
-    //   this.categorias = resp
-    // })
-
+    this.imagen_path = "";
   }
 
 
@@ -94,8 +90,6 @@ export class ModalEditProductoComponent implements OnInit {
       // Obtengo la imagen
       this.imagen = resp.img
     })
-    this.formulario.value.img = this.imagen;
-
 
 
 
@@ -107,22 +101,29 @@ export class ModalEditProductoComponent implements OnInit {
 
   // Acepto los cambios
   async submit() {
-    // Creo la nueva informacion
-    const producto: IProducto = {
-      nombre: this.formulario.value.nombre,
-      precio: this.formulario.value.precio,
-      categoria: this.formulario.value.categoria,
-      descripcion: this.formulario.value.descripcion,
-      img: this.formulario.value.img,
-      img_path: this.image_path
+
+    // Compruebo que el formulario es valido
+    if (this.formulario.valid && this.imagenRef) {
+      // Creo la nueva informacion
+      const producto: IProducto = {
+        nombre: this.formulario.value.nombre,
+        precio: this.formulario.value.precio,
+        categoria: this.formulario.value.categoria,
+        descripcion: this.formulario.value.descripcion,
+        img: this.imagenRef,
+        img_path: this.imagen_path
+      }
+  
+      // Actualizo la informacion
+      this.$productoServ.updateProducto(this.id, producto)
+  
+      this.toast.success("Se actualizo correctamente el producto a la base de datos", "Se actualizo el producto", { positionClass: 'toast-bottom-right', closeButton: true })
+      this.ref.close()
     }
-    console.log(this.formulario.value.img)
-
-    // Actualizo la informacion
-    this.$productoServ.updateProducto(this.id, producto)
-
-    this.toast.success("Se actualizo correctamente el producto a la base de datos", "Se actualizo el producto", { positionClass: 'toast-bottom-right', closeButton: true })
-    this.ref.close()
+    else{
+      // Mensaje de que no lleno todos los campos
+      this.toast.error("Porfavor rellene todos los campos","No completo el formulario",{ positionClass: 'toast-bottom-right', closeButton: true })
+    }
 
   }
 
@@ -135,7 +136,7 @@ export class ModalEditProductoComponent implements OnInit {
     // Obtengo la imagen
     const file = event.target.files[0];
     // Nombre de la imagen
-    this.image_path = file.name
+    this.imagen_path = file.name
     // Obtengo el base64 de la imagen
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -156,7 +157,7 @@ export class ModalEditProductoComponent implements OnInit {
     await this.$storage.tareaCloudStorage(file.name, file);
 
     await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
-      this.formulario.value.img = resp;
+      this.imagenRef = resp;
     })
     // Cambio el estado para bloquear el boton
     this.stateDownload = false;

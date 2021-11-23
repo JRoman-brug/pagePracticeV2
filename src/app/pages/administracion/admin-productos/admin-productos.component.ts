@@ -43,7 +43,7 @@ export class AdminProductosComponent implements OnInit {
       this.productos = resp
     })
   }
-  // Modal editar producto
+  // Modal agregar producto
   AddProducto() {
     this.dialogService.open(ModalAddProductoComponent, {
       header: "Agregar un producto"

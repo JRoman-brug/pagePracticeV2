@@ -22,7 +22,7 @@ export class ProductoService {
   private productoCollection: AngularFirestoreCollection<IProducto>
 
   constructor(private firestore: AngularFirestore) {
-    this.productoCollection = firestore.collection<IProducto>('productos');
+    this.productoCollection = firestore.collection<IProductoId>('productos');
 
     this.productos = this.productoCollection.snapshotChanges().pipe(
       map(a => a.map(a => {

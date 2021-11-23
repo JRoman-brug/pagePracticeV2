@@ -33,9 +33,16 @@ export class ModalAddProductoComponent implements OnInit {
   // Referencia
   referencia: any;
 
+  // img para previsualizar
   imagen!: any;
+  
+  // Link imagen
+  imagenRef!:string;
+  
+  // Path de la imagen
   imagen_path: string;
   opcionSeleccionada!: string;
+
   constructor(
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
@@ -50,7 +57,6 @@ export class ModalAddProductoComponent implements OnInit {
       precio: ["", Validators.required],
       categoria: ["", Validators.required],
       descripcion: ["", Validators.required],
-      img: ["", Validators.required]
     })
     this.imagen_path = ""
 
@@ -77,23 +83,31 @@ export class ModalAddProductoComponent implements OnInit {
   }
 
   // Acepto los cambios
-  async submit() {
-    // Creo la nueva informacion
-    const producto: IProducto = {
-      nombre: this.formulario.value.nombre,
-      precio: this.formulario.value.precio,
-      categoria: this.formulario.value.categoria,
-      descripcion: this.formulario.value.descripcion,
-      img: this.formulario.value.img,
-      img_path: this.imagen_path,
-      carousel:false,
+  submit() {
+    // Compruebo que el formulario es valido
+    if(this.formulario.valid && this.imagenRef){
+      // Creo la nueva informacion
+      const producto: IProducto = {
+        nombre: this.formulario.value.nombre,
+        precio: this.formulario.value.precio,
+        categoria: this.formulario.value.categoria,
+        descripcion: this.formulario.value.descripcion,
+        img: this.imagenRef,
+        img_path: this.imagen_path,
+        carousel:false,
+      }
+      // Agrego el producto
+      this.$productoServ.addProducto(producto)
+  
+      // Mensaje de que se completo con exito 
+      this.toast.success("Se agrego correctamente el producto a la base de datos", "Se agrego el producto", { positionClass: 'toast-bottom-right', closeButton: true })
+      // Cierro el modal
+      this.ref.close()
     }
-
-    // Agrego el producto
-    this.$productoServ.addProducto(producto)
-
-    this.toast.success("Se agrego correctamente el producto a la base de datos", "Se agrego el producto", { positionClass: 'toast-bottom-right', closeButton: true })
-    this.ref.close()
+    else{
+      // Mensaje de que no lleno todos los campos
+      this.toast.error("Porfavor rellene todos los campos","No completo el formulario",{ positionClass: 'toast-bottom-right', closeButton: true })
+    }
   }
 
   //Selecciono la imagen 
@@ -120,11 +134,9 @@ export class ModalAddProductoComponent implements OnInit {
     await this.$storage.tareaCloudStorage(file.name, file);
 
     await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
-      this.formulario.value.img = resp;
-      console.log(this.stateDownload)
+      this.imagenRef = resp;
     })
-    console.log(this.formulario.value.img)
-    // Cambio el estado para bloquear el boton
+    // Cambio el estado para desbloquear el boton
     this.stateDownload = false;
   }
 

@@ -46,7 +46,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 // PrimeNG services
@@ -60,52 +60,69 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Componentes
 import { AppComponent } from './app.component';
-import { MenuComponent } from './shared/menu/menu.component';
+
+// Pages
 import { ProductosComponent } from './pages/productos/productos.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { Error404Component } from './pages/error404/error404.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
-import { PruebasComponent } from './pages/pruebas/pruebas.component';
-import { AdministracionComponent } from './pages/administracion/administracion.component';
-import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
-import { ModalAddProductoComponent } from './modals/productos/modal-add-producto/modal-add-producto.component';
-import { ModalEditProductoComponent } from './modals/productos/modal-edit-producto/modal-edit-producto.component';
-import { ModalCategoriaComponent } from './modals/categoria/modal-categoria/modal-categoria.component';
-import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
-import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
-import { AddImagenComponent } from './modals/carousel/add-imagen/add-imagen.component';
+
+// Shared
+import { FooterComponent } from './shared/footer/footer.component';
+import { MenuComponent } from './shared/menu/menu.component';
 import { MosaicoComponent } from './shared/mosaico/mosaico.component';
+
+// Modals
+import { AddImagenComponent } from './modals/carousel/add-imagen/add-imagen.component';
 import { PreguntasFrecuentesAgregarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
 import { PreguntasFrecuentesEditarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
+import { ModalCategoriaComponent } from './modals/categoria/modal-categoria/modal-categoria.component';
+import { ModalAddProductoComponent } from './modals/productos/modal-add-producto/modal-add-producto.component';
+import { ModalEditProductoComponent } from './modals/productos/modal-edit-producto/modal-edit-producto.component';
 import { IniciarSesionComponent } from './modals/iniciar-sesion/iniciar-sesion.component';
+
+// Sector de administración
+import { AdministracionComponent } from './pages/administracion/administracion.component';
+import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
+import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
+import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
 import { AdminCarouselProductosComponent } from './pages/administracion/admin-carousel-productos/admin-carousel-productos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
+
+    // Pages
     ProductosComponent,
-    FooterComponent,
     InicioComponent,
     Error404Component,
     ProductoComponent,
     PreguntasFrecuentesComponent,
-    PruebasComponent,
+
+    // Shared
+    MenuComponent,
+    FooterComponent,
+    MosaicoComponent,
+
+
+    // Sector de administracion
     AdministracionComponent,
     AdminProductosComponent,
+    AdminInicioComponent,
+    AdminPreguntasFrecuentesComponent,
+    AdminCarouselProductosComponent,
+    
+    // Modal
+    PreguntasFrecuentesAgregarComponent,
+    PreguntasFrecuentesEditarComponent,
     ModalEditProductoComponent,
     ModalAddProductoComponent,
     ModalCategoriaComponent,
-    AdminInicioComponent,
-    AdminPreguntasFrecuentesComponent,
-    PreguntasFrecuentesAgregarComponent,
-    PreguntasFrecuentesEditarComponent,
     AddImagenComponent,
-    MosaicoComponent,
     IniciarSesionComponent,
-    AdminCarouselProductosComponent,
+
+
   ],
   imports: [
     BrowserModule,

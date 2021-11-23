@@ -11,7 +11,6 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { ProductosComponent } from './pages/productos/productos.component';
-import { PruebasComponent } from './pages/pruebas/pruebas.component';
 
 const routes: Routes = [
   {
@@ -30,10 +29,6 @@ const routes: Routes = [
     path: "PreguntasFrecuentes", component: PreguntasFrecuentesComponent
   },
   {
-    path: "Prueba", component: PruebasComponent
-  },
-  // Usar chilldrens
-  {
     path: "Administracion",component:AdministracionComponent,
     children:[
       {
@@ -49,7 +44,7 @@ const routes: Routes = [
         path:"Admin-Carouse-Productos",component:AdminCarouselProductosComponent
       },
       {
-        path:"",component:AdminProductosComponent, pathMatch:"full"
+        path:"",component:AdminInicioComponent, pathMatch:"full"
       }
     ]
   },

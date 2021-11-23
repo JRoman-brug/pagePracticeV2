@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { IPreguntaId } from 'src/app/interfaces/pregunta/pregunta';
 import { ICategoria, ICategoriaId } from 'src/app/interfaces/categoria/categoria';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ProductoComponent } from 'src/app/modals/producto/producto.component';
 
 @Component({
   selector: 'app-productos',
@@ -33,19 +35,20 @@ export class ProductosComponent implements OnInit {
 
   productos!: IProductoId[]
   constructor(
-    private $ProductoServ: ProductoService, 
+    private $ProductoServ: ProductoService,
     private route: Router,
-    private $categoriaServ:CategoriasService
-    ) {
+    public dialogService: DialogService,
+    private $categoriaServ: CategoriasService
+  ) {
   }
 
   ngOnInit(): void {
 
     this.opciones = []
-    this.$categoriaServ.getCategorias().subscribe(resp=>{
+    this.$categoriaServ.getCategorias().subscribe(resp => {
       this.categorias = resp
       for (let categoria of this.categorias) {
-        this.opciones.push(categoria.categoria) 
+        this.opciones.push(categoria.categoria)
       }
     })
     // obtengo los productos de la base de datos
@@ -57,8 +60,8 @@ export class ProductosComponent implements OnInit {
       { label: 'De menor a mayor', value: 'precio' }
     ];
   }
-  
-  
+
+
   // Metodo para ordenar por precio
   onSortChange(event: any) {
     let value = event.value;
@@ -73,16 +76,21 @@ export class ProductosComponent implements OnInit {
     }
   }
   verProducto(id: string) {
-    this.route.navigate(['Producto', id])
+    this.dialogService.open(ProductoComponent,{
+      data:{
+        id:id
+      }
+    })
   }
 
+  // Obtener productos
   changeProductos() {
     this.$ProductoServ.getProductos(this.opcionSeleccionada).subscribe(resp => {
       this.productos = resp;
     })
-    console.log(this.productos)
   }
 
+  // Limpiar opciones
   cleanOption() {
     this.opcionSeleccionada = null;
     this.changeProductos()
