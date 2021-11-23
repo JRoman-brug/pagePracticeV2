@@ -80,6 +80,7 @@ import { MosaicoComponent } from './shared/mosaico/mosaico.component';
 import { PreguntasFrecuentesAgregarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-agregar/preguntas-frecuentes-agregar.component';
 import { PreguntasFrecuentesEditarComponent } from './modals/preguntasFrecuentes/preguntas-frecuentes-editar/preguntas-frecuentes-editar.component';
 import { IniciarSesionComponent } from './modals/iniciar-sesion/iniciar-sesion.component';
+import { AdminCarouselProductosComponent } from './pages/administracion/admin-carousel-productos/admin-carousel-productos.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { IniciarSesionComponent } from './modals/iniciar-sesion/iniciar-sesion.c
     PreguntasFrecuentesEditarComponent,
     AddImagenComponent,
     MosaicoComponent,
-    IniciarSesionComponent
+    IniciarSesionComponent,
+    AdminCarouselProductosComponent,
   ],
   imports: [
     BrowserModule,

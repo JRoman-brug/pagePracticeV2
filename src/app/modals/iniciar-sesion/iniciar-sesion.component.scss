@@ -1,0 +1,145 @@
+// fondo gris del modal
+.contenedor__background {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba($color: #000, $alpha: 0.7);
+    z-index: 100;
+}
+// Animacion de opacidad
+.contenedor__background.inactive {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.contenedor__background.active {
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0.3s ease;
+}
+
+// contenedor general del modal
+.contenedor__general {
+    width: 1200px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background: red;
+    position: relative;
+    margin: auto;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 15px #151515;
+}
+// Animacion de ease-in
+.contenedor__general.inactive {
+    visibility: hidden;
+    opacity: 0;
+    animation: modalInactive 0.5s;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    // Animacion de ease-out
+}
+.contenedor__general.active {
+    opacity: 1;
+    animation: modalActive 0.5s;
+    transition: opacity 0.5s ease, visibility 0.3s ease;
+}
+// Animaciones necesarias
+@keyframes modalInactive {
+    to {
+        transform: scale(0);
+    }
+}
+@keyframes modalActive {
+    from {
+        transform: scale(0);
+    }
+}
+
+// Contenedor de la imagen
+.contenedor__image {
+    width: 100%;
+    height: 500px;
+}
+.contenedor__image .imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+// Formulario
+.contenedor__login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+}
+.formulario {
+    width: 70%;
+    height: 140px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.container__input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.input {
+    border: none;
+    border-bottom: 2px solid #989898;
+    outline: none;
+    background: none;
+}
+// label en el input
+.label {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    transition: top 0.3s ease, font-size 0.3s ease;
+}
+
+// Animacion de label float
+.input:focus ~ .label,
+.input:not(:focus):valid ~ .label {
+    font-size: 8px;
+    top: -8px;
+    left: 0;
+}
+
+// Animacion del border
+.container__input .line::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    transition: width 0.3s ease;
+    z-index: 30;
+}
+.container__input .input:focus ~ .line::after {
+    width: 100%;
+}
+
+// Boton de cerrar
+.btn__close {
+    font-size: 24px;
+    color: #000;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}

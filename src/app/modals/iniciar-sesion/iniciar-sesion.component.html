@@ -1,10 +1,36 @@
-<div class="contenedor__general">
-    <form action="">
-        <input type="text">
-        <input type="text">
-    </form>
-    <div>
-        <button class="btn btn-success">Ingresar</button>
-        <button class="btn btn-danger">Salir</button>
+    <!-- modal -->
+<!-- Background gris -->
+<div class="contenedor__background" [ngClass]="claseModal">
+    <!-- Modal -->
+    <div class="contenedor__general" [ngClass]="claseModal">
+        <!-- Imagen del modal -->
+        <div class="contenedor__image">
+            <img class="imagen" src="../.././../assets/Login__image2.png" alt="">
+        </div>
+        <!-- Formulario -->
+        <div class="contenedor__login">
+            <h1>Iniciar sesión</h1>
+            <!-- Formulario -->
+            <form class="formulario">
+                <!-- Input de mail -->
+                <div class="container__input">
+                    <input class="input" type="mail" required>
+                    <span class="line"></span>
+                    <label class="label">Mail</label>
+                </div>
+                <!-- Input password -->
+                <div class="container__input">
+                    <input class="input" type="password" required>
+                    <span class="line"></span>
+                    <label class="label">Contraseña</label>
+                </div>
+            </form>
+            <!-- Boton para iniciar sesion-->
+            <div class="contenedor__button">
+                <button class="btn btn-primary">Iniciar Sesion</button>
+            </div>
+        </div>
+        <!-- boton para cerrar -->
+        <span (click)="boton()" class="btn__close fas fa-times"></span>
     </div>
 </div>

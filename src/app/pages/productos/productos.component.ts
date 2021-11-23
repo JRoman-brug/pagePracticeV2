@@ -57,8 +57,8 @@ export class ProductosComponent implements OnInit {
       { label: 'De menor a mayor', value: 'precio' }
     ];
   }
-
-
+  
+  
   // Metodo para ordenar por precio
   onSortChange(event: any) {
     let value = event.value;

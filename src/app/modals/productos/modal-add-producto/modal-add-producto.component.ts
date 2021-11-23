@@ -85,7 +85,8 @@ export class ModalAddProductoComponent implements OnInit {
       categoria: this.formulario.value.categoria,
       descripcion: this.formulario.value.descripcion,
       img: this.formulario.value.img,
-      img_path: this.imagen_path
+      img_path: this.imagen_path,
+      carousel:false,
     }
 
     // Agrego el producto
@@ -122,6 +123,7 @@ export class ModalAddProductoComponent implements OnInit {
       this.formulario.value.img = resp;
       console.log(this.stateDownload)
     })
+    console.log(this.formulario.value.img)
     // Cambio el estado para bloquear el boton
     this.stateDownload = false;
   }

@@ -8,8 +8,11 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent {
   title = 'pagePracticesV2';
+
   constructor(@Inject(DOCUMENT) private document: any) {}
   elem:any;
+
+
 
   openFullscreen() {
     if (this.elem.requestFullscreen) {

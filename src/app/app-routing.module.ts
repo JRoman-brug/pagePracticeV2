@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IniciarSesionComponent } from './modals/iniciar-sesion/iniciar-sesion.component';
+import { AdminCarouselProductosComponent } from './pages/administracion/admin-carousel-productos/admin-carousel-productos.component';
 import { AdminInicioComponent } from './pages/administracion/admin-inicio/admin-inicio.component';
 import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
 import { AdminProductosComponent } from './pages/administracion/admin-productos/admin-productos.component';
@@ -43,6 +44,9 @@ const routes: Routes = [
       },
       {
         path:"Admin-Preguntas-Frecuentes",component:AdminPreguntasFrecuentesComponent
+      },
+      {
+        path:"Admin-Carouse-Productos",component:AdminCarouselProductosComponent
       },
       {
         path:"",component:AdminProductosComponent, pathMatch:"full"

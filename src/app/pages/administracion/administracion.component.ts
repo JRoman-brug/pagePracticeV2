@@ -23,9 +23,9 @@ export class AdministracionComponent implements OnInit {
         routerLink:"Admin-Productos"
       },
       {
-        label: 'Temas de la pagina',
+        label: 'Carousel de productos',
         icon: 'pi pi-fw pi-pencil',
-        routerLink:"Admin-Productos"
+        routerLink:"Admin-Carouse-Productos"
 
       },
       {

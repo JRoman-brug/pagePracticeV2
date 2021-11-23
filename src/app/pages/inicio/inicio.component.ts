@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ICarouselId } from 'src/app/interfaces/carousel/carousel';
+import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
 import { CarouselService } from 'src/app/services/carousel/carousel.service';
+import { ProductoService } from 'src/app/services/producto/producto.service';
 
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, SwiperOptions } from 'swiper';
 
@@ -13,13 +15,19 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 })
 export class InicioComponent implements OnInit {
 
-  productos: number[] = [1, 2, 3, 4, 5, 6, 7];
+  productos!:IProductoId[];
   imagenes!: ICarouselId[];
-  constructor(private $carouselServ: CarouselService) {
+  constructor(private $carouselServ: CarouselService,private $productoServ:ProductoService) {
     // Obtengo las imagenes del carousel de firestore
     $carouselServ.getImagenes().subscribe(resp => {
       this.imagenes = resp
     })
+
+    $productoServ.getProductosCarousel().subscribe(resp=>{
+      this.productos = resp
+    })
+
+
   }
 
   ngOnInit(): void {

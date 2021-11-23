@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
+import { AbrirModalService } from 'src/app/services/abrirModal/abrir-modal.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -8,12 +10,29 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class IniciarSesionComponent implements OnInit {
 
-  constructor(
-    public dialogService: DialogService,
-  ) { }
+  clickEventsubscription:Subscription;
+
+  claseModal = "inactive";
+  constructor(private abrirModal: AbrirModalService) {
+    this.clickEventsubscription = this.abrirModal.getClickEvent().subscribe(() => {
+      this.boton();
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  
+  // Para abrir el modal
+  boton() {
+
+    if (this.claseModal == "inactive") {
+      document.querySelector("body")?.classList.add("modalOpen")
+      this.claseModal = "active"
+    }
+    else {
+        document.querySelector("body")?.classList.remove("modalOpen")
+        this.claseModal = "inactive"
+    }
+  }
+
 }

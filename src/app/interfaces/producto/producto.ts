@@ -9,4 +9,5 @@ export interface IProducto {
     categoria?:string;
     img?:string;
     img_path?:string;
+    carousel?:boolean;
 }

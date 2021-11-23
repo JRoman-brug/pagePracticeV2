@@ -107,9 +107,6 @@ export class ModalEditProductoComponent implements OnInit {
 
   // Acepto los cambios
   async submit() {
-    await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
-      this.formulario.value.img = resp
-    })
     // Creo la nueva informacion
     const producto: IProducto = {
       nombre: this.formulario.value.nombre,
@@ -119,7 +116,7 @@ export class ModalEditProductoComponent implements OnInit {
       img: this.formulario.value.img,
       img_path: this.image_path
     }
-
+    console.log(this.formulario.value.img)
 
     // Actualizo la informacion
     this.$productoServ.updateProducto(this.id, producto)

@@ -52,6 +52,16 @@ export class ProductoService {
     }
   }
 
+  getProductosCarousel(){
+    return this.firestore.collection('productos', ref => ref.where('carousel', '==', true)).snapshotChanges().pipe(
+      map(a=> a.map(a=>{
+        const id = a.payload.doc.id;
+        const data = a.payload.doc.data() as IProducto;
+
+        return { id, ...data }
+      }))
+    )
+  }
 
   // Obtener un producto
   getProducto(id: string) {

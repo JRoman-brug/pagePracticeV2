@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 // Menu settings
 import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { IniciarSesionComponent } from 'src/app/modals/iniciar-sesion/iniciar-sesion.component';
+import { AbrirModalService } from 'src/app/services/abrirModal/abrir-modal.service';
 
 @Component({
   selector: 'app-menu',
@@ -13,18 +14,18 @@ import { IniciarSesionComponent } from 'src/app/modals/iniciar-sesion/iniciar-se
 export class MenuComponent implements OnInit {
 
   menu = "";
- 
-  constructor(public dialogService: DialogService,) {
+  @Output() myEvent = new EventEmitter();
+  constructor(public dialogService: DialogService,private abrirModal:AbrirModalService) {
   }
+
 
   ngOnInit(): void {
   }
 
-  abrirInicioSesion(){
-    this.dialogService.open(IniciarSesionComponent,{
-      header:"Iniciar sesión"
-    })
+  abrirIniciarSesion(){
+    this.abrirModal.sendClickEvent();
   }
+
   cambiarBoton() {
     if (this.menu == "active") {
       this.menu = ""

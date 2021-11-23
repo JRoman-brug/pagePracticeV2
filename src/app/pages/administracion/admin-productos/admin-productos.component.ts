@@ -24,7 +24,8 @@ import { ModalCategoriaComponent } from 'src/app/modals/categoria/modal-categori
 export class AdminProductosComponent implements OnInit {
 
   productos!: IProducto[];
-  constructor(private $productoServ: ProductoService,
+  constructor(
+    private $productoServ: ProductoService,
     private toast: ToastrService,
     public dialogService: DialogService,
     private $storage: StorageService
