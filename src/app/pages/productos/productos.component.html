@@ -70,7 +70,7 @@
                     <div class="product-grid-item-bottom">
                         <span class="product-price">{{product.precio | currency}}</span>
                     </div>
-                    <button class="btn btn-primary btn-block my-2">Ver producto</button>
+                    <button class="btn btn-primary btn-block my-2" (click)="verProducto(product.id)">Ver producto</button>
                 </div>
             </div>
         </ng-template>

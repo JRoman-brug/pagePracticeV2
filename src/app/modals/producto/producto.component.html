@@ -1,2 +1,19 @@
-
-<h2>{{producto.precio}}</h2>
+<!-- Contenedor general defino el width y height -->
+<div class="contenedor__general">
+    <!-- Contenedor de la imagen -->
+    <div class="container__image">
+        <img [src]="producto.img" alt="">
+    </div>
+    <!-- Contenedor de la informacion principal -->
+    <div class="container__info">
+        <h1>{{producto.nombre}}</h1>
+        <p> <i class="pi pi-fw pi-tag"></i>{{producto.categoria}}</p>
+        <span>precio: {{producto.precio }}</span>
+    </div>
+    <!-- Contenedor de la descripcion -->
+    <div class="container__descripcion">
+        <p>
+            {{producto.descripcion}}
+        </p>
+    </div>
+</div>

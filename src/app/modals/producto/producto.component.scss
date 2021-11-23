@@ -1,0 +1,27 @@
+.contenedor__general {
+    width: 50vw;
+    height: 40vh;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+.container__image {
+    grid-column: 1/2;
+    grid-row: 1/3;
+}
+.container__image img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.container__info {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.container__descripcion {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    overflow-y: scroll;
+}

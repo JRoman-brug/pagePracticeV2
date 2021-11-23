@@ -9,7 +9,6 @@ import { AdministracionComponent } from './pages/administracion/administracion.c
 import { Error404Component } from './pages/error404/error404.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
-import { ProductoComponent } from './pages/producto/producto.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 
 const routes: Routes = [
@@ -18,9 +17,6 @@ const routes: Routes = [
   },
   {
     path: "Productos", component: ProductosComponent
-  },
-  {
-    path: "Producto/:id", component: ProductoComponent
   },
   {
     path: "InicioSesion", component: IniciarSesionComponent

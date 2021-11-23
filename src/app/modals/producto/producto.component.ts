@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, OnInit,} from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IProducto, IProductoId } from 'src/app/interfaces/producto/producto';
 import { ProductoService } from 'src/app/services/producto/producto.service';
+
 
 @Component({
   selector: 'app-producto',

@@ -65,7 +65,6 @@ import { AppComponent } from './app.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { Error404Component } from './pages/error404/error404.component';
-import { ProductoComponent } from './pages/producto/producto.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 
 // Shared
@@ -97,7 +96,6 @@ import { AdminCarouselProductosComponent } from './pages/administracion/admin-ca
     ProductosComponent,
     InicioComponent,
     Error404Component,
-    ProductoComponent,
     PreguntasFrecuentesComponent,
 
     // Shared
@@ -183,7 +181,7 @@ import { AdminCarouselProductosComponent } from './pages/administracion/admin-ca
     DialogModule,
     DynamicDialogModule,
     // Misc
-    ProgressSpinnerModule
+    ProgressSpinnerModule, 
   ],
   entryComponents: [
     ModalEditProductoComponent
