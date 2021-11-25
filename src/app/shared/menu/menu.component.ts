@@ -1,10 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 // Menu settings
-import { MenuItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { IniciarSesionComponent } from 'src/app/modals/iniciar-sesion/iniciar-sesion.component';
 import { AbrirModalService } from 'src/app/services/abrirModal/abrir-modal.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,15 +13,25 @@ import { AbrirModalService } from 'src/app/services/abrirModal/abrir-modal.servi
 export class MenuComponent implements OnInit {
 
   menu = "";
+  user: any;
+
   @Output() myEvent = new EventEmitter();
-  constructor(public dialogService: DialogService,private abrirModal:AbrirModalService) {
+  constructor(
+    public dialogService: DialogService,
+    private abrirModal: AbrirModalService,
+    private $authServ: AuthService,
+  ) {
+    // estado del usuario
+    $authServ.getCurrentUser().subscribe(resp => {
+      this.user = resp
+    });
   }
 
 
   ngOnInit(): void {
   }
 
-  abrirIniciarSesion(){
+  abrirIniciarSesion() {
     this.abrirModal.sendClickEvent();
   }
 
@@ -37,4 +46,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  logout() {
+    this.$authServ.signOut()
+  }
 }

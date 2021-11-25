@@ -1,0 +1,80 @@
+.contenedor_general {
+    width: 100%;
+    height: 100%;
+}
+.container__header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    padding-left: 10px;
+    background: #fff;
+}
+
+.titulo {
+    width: 70%;
+    margin: auto;
+}
+.titulo h1 {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.container__inpus__RedeSociales {
+    width: 70%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+}
+.formulario{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.nombreNegocio{
+    order: 1;
+}
+.direccionNegocio{
+    order: 2;
+}
+.whatsApp{
+    order: 3;
+}
+.instagram{
+    order: 4;
+}
+.facebook{
+    order: 5;
+}
+.mercadoLibre{
+    order: 6;
+}
+
+.container__inputs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 10px 10px;
+    border-radius: 4px;
+    background: #fff;
+}
+.container__inputs .p-inputgroup {
+    width: 70%;
+}
+.container__inputs .input__checkbox {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input__checkbox input {
+    transform: scale(2);
+}

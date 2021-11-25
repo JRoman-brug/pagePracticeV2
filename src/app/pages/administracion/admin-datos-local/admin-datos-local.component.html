@@ -1,0 +1,20 @@
+<div class="contenedor_general">
+    <div class="container__inpus__RedeSociales">
+
+        <div class="container__header">
+            <div class="titulo">
+                <h1>Datos/Redes Sociales del negocio</h1>
+            </div>
+        </div>
+
+        <form [formGroup]="formulario" class="formulario"  style="display: flex; flex-direction: column;">
+            <!-- Inputs de infomacion -->
+            <div class="container__inputs" *ngFor="let dato of datosLocal" [ngClass]="dato.id">
+                <div class="p-inputgroup">
+                    <input type="text" pInputText [placeholder]="dato.titulo" [formControlName]="dato.id">
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-success" (click)="guardarDato()">Guarda datos</button>
+    </div>
+</div>

@@ -39,8 +39,8 @@ export class PreguntasFrecuentesService {
   getPregunta(id: string) {
     return this.preguntaCollection.doc(id).snapshotChanges().pipe(
       map(a => {
-        const id = a.payload.id
-        const data = a.payload.data() as IPregunta
+        const id = a.payload.id;
+        const data = a.payload.data() as IPregunta;
 
         return { id, ...data };
       }))

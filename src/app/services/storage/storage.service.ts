@@ -8,7 +8,6 @@ import { FileUpload } from 'src/app/interfaces/fileUpload/file-upload';
 })
 export class StorageService {
 
-  basePath: string = "productos"
   prueba: AngularFireStorageReference;
 
   constructor(
@@ -18,12 +17,12 @@ export class StorageService {
   }
 
   //Tarea para subir archivo
-  public tareaCloudStorage(nombreArchivo: string, datos: any) {
+  tareaCloudStorage(nombreArchivo: string, datos: any) {
     return this.storage.upload(`productos/${nombreArchivo}`, datos)
   }
 
-  //Referencia del archivo
-  public referenciaCloudStorage(nombreArchivo: string) {
+  //Referencia del archivo referenciaCloudStorage
+  referenciaCloudStorage(nombreArchivo: string) {
     return this.prueba.child(nombreArchivo);
   }
 

@@ -15,24 +15,29 @@ export class AdministracionComponent implements OnInit {
       {
         label: 'Editar inicio',
         icon: 'pi pi-fw pi-home',
-        routerLink:"Admin-Inicio"
+        routerLink: "Admin-Inicio"
       },
       {
         label: 'Productos',
         icon: 'pi pi-fw pi-calendar',
-        routerLink:"Admin-Productos"
+        routerLink: "Admin-Productos"
       },
       {
         label: 'Carousel de productos',
         icon: 'pi pi-fw pi-pencil',
-        routerLink:"Admin-Carouse-Productos"
+        routerLink: "Admin-Carouse-Productos"
 
       },
       {
         label: 'Preguntas frecuentes ',
         icon: 'pi pi-fw pi-file',
-        routerLink:"Admin-Preguntas-Frecuentes" 
+        routerLink: "Admin-Preguntas-Frecuentes"
       },
+      {
+        label: ' Configurar datos del local',
+        icon: 'fas fa-store-alt',
+        routerLink: "Admin-datos-local"
+      }
     ];
   }
 

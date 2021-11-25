@@ -131,7 +131,7 @@ export class ModalAddProductoComponent implements OnInit {
     this.referencia = this.$storage.referenciaCloudStorage(file.name);
 
     // sube la imagen
-    await this.$storage.tareaCloudStorage(file.name, file);
+    await this.$storage.tareaCloudStorage(file.name, file)  ;
 
     await this.referencia.getDownloadURL().toPromise().then((resp: any) => {
       this.imagenRef = resp;

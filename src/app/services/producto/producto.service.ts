@@ -52,6 +52,7 @@ export class ProductoService {
     }
   }
 
+  // Obtengo los producto del carousel
   getProductosCarousel(){
     return this.firestore.collection('productos', ref => ref.where('carousel', '==', true)).snapshotChanges().pipe(
       map(a=> a.map(a=>{

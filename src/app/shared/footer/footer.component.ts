@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IDatoLocalId } from 'src/app/interfaces/datoLocal/dato-local';
+import { DatosLocalService } from 'src/app/services/datosLocal/datos-local.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   nombreNegocio="MasterNike"
-  constructor() { }
+
+  datos!:IDatoLocalId[];
+
+  constructor(private $datosServ:DatosLocalService) { 
+    $datosServ.obtenerRedes().subscribe(resp=>{
+      this.datos = resp
+    })
+  }
 
   ngOnInit(): void {
+  }
+
+  assssss(){
+    console.log(this.datos)
   }
 
 }

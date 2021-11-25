@@ -11,23 +11,23 @@
         <div class="contenedor__login">
             <h1>Iniciar sesión</h1>
             <!-- Formulario -->
-            <form class="formulario">
+            <form class="formulario" [formGroup]="formulario">
                 <!-- Input de mail -->
                 <div class="container__input">
-                    <input class="input" type="mail" required>
+                    <input class="input" type="mail" required formControlName="mail">
                     <span class="line"></span>
                     <label class="label">Mail</label>
                 </div>
                 <!-- Input password -->
                 <div class="container__input">
-                    <input class="input" type="password" required>
+                    <input class="input" type="password" required formControlName="password">
                     <span class="line"></span>
                     <label class="label">Contraseña</label>
                 </div>
             </form>
             <!-- Boton para iniciar sesion-->
-            <div class="contenedor__button">
-                <button class="btn btn-primary">Iniciar Sesion</button>
+            <div class="contenedor__button" *ngIf="!user">
+                <button class="btn btn-primary" (click)="iniciarSesion()">Iniciar Sesion</button>
             </div>
         </div>
         <!-- boton para cerrar -->

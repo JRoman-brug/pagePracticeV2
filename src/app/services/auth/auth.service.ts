@@ -8,14 +8,22 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   user!: Observable<any>;
+  
   constructor(private auth: AngularFireAuth) {
     this.user = this.auth.authState
   }
 
-  login(mail:string, password:string){
-    this.auth.signInWithEmailAndPassword(mail,password)
+  login(mail: string, password: string) {
+    return this.auth.signInWithEmailAndPassword(mail, password)
   }
-  stateUser(){
+
+  // Obtener el observador del usuario actual
+  getCurrentUser(): Observable<any> {
     return this.user;
+  }
+
+  // Logout
+  signOut(): Promise<void> {
+    return this.auth.signOut();
   }
 }

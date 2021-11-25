@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IniciarSesionComponent } from './modals/iniciar-sesion/iniciar-sesion.component';
 import { AdminCarouselProductosComponent } from './pages/administracion/admin-carousel-productos/admin-carousel-productos.component';
@@ -10,6 +10,12 @@ import { Error404Component } from './pages/error404/error404.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { PreguntasFrecuentesComponent } from './pages/preguntas-frecuentes/preguntas-frecuentes.component';
 import { ProductosComponent } from './pages/productos/productos.component';
+
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+import { AdminDatosLocalComponent } from './pages/administracion/admin-datos-local/admin-datos-local.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['Inicio']);
+
 
 const routes: Routes = [
   {
@@ -26,6 +32,8 @@ const routes: Routes = [
   },
   {
     path: "Administracion",component:AdministracionComponent,
+    canActivate:[AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
     children:[
       {
         path:"Admin-Productos",component:AdminProductosComponent
@@ -38,6 +46,9 @@ const routes: Routes = [
       },
       {
         path:"Admin-Carouse-Productos",component:AdminCarouselProductosComponent
+      },
+      {
+        path:"Admin-datos-local",component:AdminDatosLocalComponent
       },
       {
         path:"",component:AdminInicioComponent, pathMatch:"full"

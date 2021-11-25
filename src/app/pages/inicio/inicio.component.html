@@ -31,18 +31,18 @@
 <!-- </div> -->
 
 <!-- Carousel de productoss -->
-<p-carousel [value]="productos" [numVisible]="3" [numScroll]="1" [circular]="true">
+<p-carousel [value]="productos" [numVisible]="4" [numScroll]="1" [circular]="true">
     <ng-template let-producto pTemplate="item">
         <div>
             <div class="producto">
                 <div class="container__image">
-                    <img [src]="producto.img" alt="" style="width: 200px;height: 200px;">
+                    <img [src]="producto.img" alt="" style="width: 200px;height: 200px; object-fit: cover;">
                 </div>
                 <div class="producto_info">
-                    <p>{{producto.producto}}</p>
+                    <p>{{producto.nombre}}</p>
                     <span>{{4000+producto.precio | currency}}</span>
                 </div>
-                <button class="btn btn-primary btn-carousel">ver producto</button>
+                <button class="btn btn-primary btn-carousel" (click)="abrirProducto(producto.id)">ver producto</button>
             </div>
         </div>
     </ng-template>
