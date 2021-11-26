@@ -38,39 +38,14 @@
     transition: all 0.3s ease;
 }
 
-@keyframes rainbow {
-    15% {
-        background: red;
-    }
-    30% {
-        background: orangered;
-    }
-    45% {
-        background: yellow;
-    }
-    60% {
-        background: green;
-    }
-    75% {
-        background: blue;
-    }
-    90% {
-        background: purple;
-    }
-    100% {
-        background: crimson;
-    }
-}
 .hamburgue__top.active {
     transform: translate(0, 19px) rotate(45deg);
-    animation: rainbow 1s ease infinite;
 }
 .hamburgue__mid.active {
     transform: scale(0);
 }
 .hamburgue__bottom.active {
     transform: translate(0, -16px) rotate(-45deg);
-    animation: rainbow 1s infinite;
 }
 
 @keyframes pumpum {

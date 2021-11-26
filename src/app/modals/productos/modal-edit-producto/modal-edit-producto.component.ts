@@ -103,7 +103,7 @@ export class ModalEditProductoComponent implements OnInit {
   async submit() {
 
     // Compruebo que el formulario es valido
-    if (this.formulario.valid && this.imagenRef) {
+    if (this.formulario.valid || this.imagenRef) {
       // Creo la nueva informacion
       const producto: IProducto = {
         nombre: this.formulario.value.nombre,
