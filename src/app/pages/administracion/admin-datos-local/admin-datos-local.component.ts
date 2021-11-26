@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { IDatoLocal, IDatoLocalId } from 'src/app/interfaces/datoLocal/dato-local';
 import { DatosLocalService } from 'src/app/services/datosLocal/datos-local.service';
 
@@ -14,7 +15,7 @@ export class AdminDatosLocalComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private $datosServices: DatosLocalService, private fb: FormBuilder) {
+  constructor(private $datosServices: DatosLocalService, private fb: FormBuilder, private toast:ToastrService) {
     this.formulario = fb.group({
       nombreNegocio: [""],
       direccionNegocio: [""],
@@ -65,6 +66,7 @@ export class AdminDatosLocalComponent implements OnInit {
 
   guardarDato() {
 
+    // Guardo los datos
     // nombreNegocio
     const nombreNegocio: IDatoLocal = {
       informacion: this.formulario.value.nombreNegocio
@@ -95,6 +97,7 @@ export class AdminDatosLocalComponent implements OnInit {
     }
     this.$datosServices.actualizarDatos("facebook", facebook);
 
+    this.toast.success("Se guardaron los datos del negocio correctamente","Se guardaron correctamente los datos",{positionClass:"toast-bottom-right",closeButton:true})
   }
 
 }

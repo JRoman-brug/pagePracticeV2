@@ -9,12 +9,16 @@ import { IDatoLocal, IDatoLocalId } from 'src/app/interfaces/datoLocal/dato-loca
 })
 export class DatosLocalService {
 
+  // Datos
   datos: Observable<IDatoLocalId[]>
+  // Referencia de datos
   coleccionDatos: AngularFirestoreCollection<IDatoLocalId>;
 
   constructor(private firestore: AngularFirestore) {
+    // Inicializo la referencia
     this.coleccionDatos = firestore.collection<IDatoLocalId>("datosLocal")
 
+    // Obtengo los datos de la base datos
     this.datos = this.coleccionDatos.snapshotChanges().pipe(
       map(a => a.map(a => {
         const id = a.payload.doc.id;
@@ -25,9 +29,11 @@ export class DatosLocalService {
     )
   }
 
+  // Obtengo todos los datos
   obtenterDatos() {
     return this.datos;
   }
+  // Obtengo un dato
   ObtenerDato(id:string) {
     return this.coleccionDatos.doc(id).snapshotChanges().pipe(
       map(a => {
@@ -42,6 +48,7 @@ export class DatosLocalService {
     return this.coleccionDatos.doc(id).update(data)
   }
 
+  // Obtengo las redes sociales
   obtenerRedes(){
     return this.firestore.collection('datosLocal', ref => ref.where('redSocial', '==', true).where('informacion', '!=', "")).snapshotChanges().pipe(
       map(a=> a.map(a=>{

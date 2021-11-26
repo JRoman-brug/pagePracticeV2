@@ -88,6 +88,7 @@ import { AdminProductosComponent } from './pages/administracion/admin-productos/
 import { AdminPreguntasFrecuentesComponent } from './pages/administracion/admin-preguntas-frecuentes/admin-preguntas-frecuentes.component';
 import { AdminCarouselProductosComponent } from './pages/administracion/admin-carousel-productos/admin-carousel-productos.component';
 import { AdminDatosLocalComponent } from './pages/administracion/admin-datos-local/admin-datos-local.component';
+import { ModalContactoComponent } from './modals/modal-contacto/modal-contacto.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { AdminDatosLocalComponent } from './pages/administracion/admin-datos-loc
     AddImagenComponent,
     IniciarSesionComponent,
     AdminDatosLocalComponent,
+    ModalContactoComponent,
 
 
   ],

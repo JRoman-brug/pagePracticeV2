@@ -4,9 +4,3 @@
     height: 100vh;
     object-fit: cover;
 }
-
-:host::ng-deep {
-    .p-carousel-items-content{
-        display: flex;
-    }
-}

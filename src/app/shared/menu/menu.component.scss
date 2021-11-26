@@ -116,7 +116,11 @@
     text-decoration: none;
     color: white;
     transition: font-size .3s ease;
+    pointer-events: focus;
 }
 .menu__hambuguesa ul li a:hover{
     font-size: 24px;
+}
+.link{
+    pointer-events: focus;
 }

@@ -1,0 +1,34 @@
+<div class="contenedor_general">
+    <!-- Direccion -->
+    <div class="direccionNegocio contenedor__datos">
+        <div class="direccion">
+            <div class="direccion__icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="direccion__info">
+                <p>{{direccionNegocio?.informacion}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram -->
+    <div class="redesSociales contenedor__instagram contenedor__datos">
+        <a [href]="instagram?.informacion" target="_blank"></a>
+        <i class="fab fa-instagram instagram"></i>
+    </div>
+    <!-- Facebook -->
+    <div class="redesSociales contenedor__facebook contenedor__datos">
+        <a [href]="facebook?.informacion" target="_blank"></a>
+        <i class="fab fa-facebook facebook"></i>
+    </div>
+    <!-- WhatsApp -->
+    <div class="whatsapp__conteiner contenedor__datos">
+        <div class="whatsapp">
+            <div class="whatsapp__icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="whatsapp__info">
+                <p>{{whatsapp.informacion}}</p>
+            </div>
+        </div>
+    </div>
+</div>

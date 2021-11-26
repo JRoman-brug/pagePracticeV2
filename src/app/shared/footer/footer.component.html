@@ -2,7 +2,7 @@
 
     <!-- Menu de navegacion -->
     <div class="menu">
-        <div  class="a__container">
+        <div class="a__container">
             <a routerLink="Inicio">Inicio</a>
         </div>
         <div class="a__container">
@@ -20,11 +20,14 @@
                 <i class="fab fa-{{dato.id}} {{dato.id}}"></i>
             </a>
         </div>
-        <div *ngIf="whatapp?.informacion != ''">
+        <div *ngIf="whatapp?.informacion != ''" id="whatsapp">
             <i class="fab fa-whatsapp whatsapp"></i>
+            <div class="container__info__redes">
+                {{whatapp?.informacion}}
+            </div>
         </div>
     </div>
 
     <!-- Nombre del negocio -->
-    <p class="nombreNegocio" >{{nombreNegocio}}</p>
+    <p class="nombreNegocio">{{nombreNegocio}}</p>
 </footer>

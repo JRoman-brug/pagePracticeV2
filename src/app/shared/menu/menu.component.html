@@ -13,22 +13,25 @@
     <div class="menu__hambuguesa" [ngClass]="menu">
         <ul>
             <li>
-                <a routerLink="/Inicio">Inicio</a>
+                <a routerLink="/Inicio" class="link">Inicio</a>
             </li>
             <li>
-                <a routerLink="/Productos">Productos</a>
+                <a routerLink="/Productos" class="link">Productos</a>
             </li>
             <li>
-                <a routerLink="/PreguntasFrecuentes">Preguntas frecuentes</a>
+                <a routerLink="/PreguntasFrecuentes"  class="link">Preguntas frecuentes</a>
+            </li>
+            <li>
+                <a (click)="contacto()" class="link">Contacto</a>
             </li>
             <li *ngIf="user">
-                <a routerLink="Administracion">Configurar pagina</a>
+                <a routerLink="Administracion" class="link">Configurar pagina</a>
             </li>
             <li *ngIf="!user">
-                <a (click)="abrirIniciarSesion()">InicioSesion</a>
+                <a (click)="abrirIniciarSesion()" class="link">InicioSesion</a>
             </li>
             <li>
-                <a *ngIf="user" (click)="logout()">Cerra sesión</a>
+                <a *ngIf="user" (click)="logout()" class="link">Cerra sesión</a>
             </li>
         </ul>
     </div>

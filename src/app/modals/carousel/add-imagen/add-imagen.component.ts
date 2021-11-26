@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ICarousel } from 'src/app/interfaces/carousel/carousel';
 import { CarouselService } from 'src/app/services/carousel/carousel.service';
@@ -22,6 +23,7 @@ export class AddImagenComponent implements OnInit {
   constructor(
     private $carouselServ: CarouselService,
     private ref: DynamicDialogRef,
+    private toast:ToastrService
 
   ) {
     this.imagen_path = ""
@@ -44,6 +46,7 @@ export class AddImagenComponent implements OnInit {
     }
 
     this.$carouselServ.addImagen(imagen);
+    this.toast.success("Se guardaron los datos del negocio correctamente","Se guardaron correctamente los datos",{positionClass:"toast-bottom-right",closeButton:true})
 
     this.closeModal();
   }

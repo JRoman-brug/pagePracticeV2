@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 // Menu settings
 import { DialogService } from 'primeng/dynamicdialog';
+import { ModalContactoComponent } from 'src/app/modals/modal-contacto/modal-contacto.component';
 import { AbrirModalService } from 'src/app/services/abrirModal/abrir-modal.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DatosLocalService } from 'src/app/services/datosLocal/datos-local.service';
@@ -53,6 +54,11 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  contacto(){
+    this.dialogService.open(ModalContactoComponent,{
+      header:"Contacto"
+    })
+  }
   logout() {
     this.$authServ.signOut()
   }
