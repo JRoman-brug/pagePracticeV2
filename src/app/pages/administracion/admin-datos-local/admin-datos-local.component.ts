@@ -18,10 +18,9 @@ export class AdminDatosLocalComponent implements OnInit {
     this.formulario = fb.group({
       nombreNegocio: [""],
       direccionNegocio: [""],
-      whatsApp: [""],
+      whatsapp: [""],
       instagram: [""],
       facebook: [""],
-      mercadoLibre: [""],
     })
     $datosServices.obtenterDatos().subscribe(resp => {
       this.datosLocal = resp
@@ -50,9 +49,9 @@ export class AdminDatosLocalComponent implements OnInit {
       })
     })
     // whatsApp
-    this.$datosServices.ObtenerDato("whatsApp").subscribe(resp => {
+    this.$datosServices.ObtenerDato("whatsapp").subscribe(resp => {
       this.formulario.patchValue({
-        whatsApp: resp.informacion
+        whatsapp: resp.informacion
       })
     })
     // facebook
@@ -61,68 +60,41 @@ export class AdminDatosLocalComponent implements OnInit {
         facebook: resp.informacion
       })
     })
-    // mercadoLibre
-    this.$datosServices.ObtenerDato("mercadoLibre").subscribe(resp => {
-      this.formulario.patchValue({
-        mercadoLibre: resp.informacion
-      })
-    })
 
   }
 
-  mostrarDato(id: string, stateDato?: boolean) {
-    if (stateDato) {
-      const dato: IDatoLocal = {
-        activo: false,
-      }
-
-      this.$datosServices.actualizarDatos(id, dato);
-    }
-    else {
-      const dato: IDatoLocal = {
-        activo: true,
-      }
-
-      this.$datosServices.actualizarDatos(id, dato);
-    }
-  }
   guardarDato() {
 
-    // whatsApp
-    const nombreNegocio:IDatoLocal={
-      informacion:this.formulario.value.nombreNegocio
+    // nombreNegocio
+    const nombreNegocio: IDatoLocal = {
+      informacion: this.formulario.value.nombreNegocio
     }
-    this.$datosServices.actualizarDatos("nombreNegocio",nombreNegocio);
+    this.$datosServices.actualizarDatos("nombreNegocio", nombreNegocio);
+
+    // direccionNegocio
+    const direccionNegocio: IDatoLocal = {
+      informacion: this.formulario.value.direccionNegocio
+    }
+    this.$datosServices.actualizarDatos("direccionNegocio", direccionNegocio);
+
+    // instagram
+    const instagram: IDatoLocal = {
+      informacion: this.formulario.value.instagram
+    }
+    this.$datosServices.actualizarDatos("instagram", instagram);
 
     // whatsApp
-    const direccionNegocio:IDatoLocal={
-      informacion:this.formulario.value.direccionNegocio
+    const whatsApp: IDatoLocal = {
+      informacion: this.formulario.value.whatsapp
     }
-    this.$datosServices.actualizarDatos("direccionNegocio",direccionNegocio);
+    this.$datosServices.actualizarDatos("whatsapp", whatsApp);
+    // facebook
 
-    // whatsApp
-    const instagram:IDatoLocal={
-      informacion:this.formulario.value.instagram
+    const facebook: IDatoLocal = {
+      informacion: this.formulario.value.facebook
     }
-    this.$datosServices.actualizarDatos("instagram",instagram);
+    this.$datosServices.actualizarDatos("facebook", facebook);
 
-    // whatsApp
-    const whatsApp:IDatoLocal={
-      informacion:this.formulario.value.whatsApp
-    }
-    this.$datosServices.actualizarDatos("whatsApp",whatsApp);
-    // whatsApp
-
-    const facebook:IDatoLocal={
-      informacion:this.formulario.value.facebook
-    }
-    this.$datosServices.actualizarDatos("facebook",facebook);
-
-    // whatsApp
-    const mercadoLibre:IDatoLocal={
-      informacion:this.formulario.value.mercadoLibre
-    }
-    this.$datosServices.actualizarDatos("mercadoLibre",mercadoLibre);
   }
 
 }

@@ -3,7 +3,6 @@ export interface IDatoLocalId extends IDatoLocal{
 } 
 export interface IDatoLocal {
     informacion?:string;
-    activo?:boolean;
     titulo?:string;
     redSocial?:boolean;
 }

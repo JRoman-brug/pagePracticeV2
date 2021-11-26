@@ -9,21 +9,28 @@ import { DatosLocalService } from 'src/app/services/datosLocal/datos-local.servi
 })
 export class FooterComponent implements OnInit {
 
-  nombreNegocio="MasterNike"
-
+  // Nombre del negocio
+  nombreNegocio!:string | undefined;
+  // WhatsApp
+  whatapp!:IDatoLocalId;
+  // Redes Sociales
   datos!:IDatoLocalId[];
 
   constructor(private $datosServ:DatosLocalService) { 
+    // Obtengo las redes sociales
     $datosServ.obtenerRedes().subscribe(resp=>{
       this.datos = resp
+    })
+    // Obtengo el nombre del negocio
+    $datosServ.ObtenerDato("nombreNegocio").subscribe(resp=>{
+      this.nombreNegocio = resp.informacion
+    })
+    // Obtengo el whatsapp
+    $datosServ.ObtenerDato("whatsapp").subscribe(resp=>{
+      this.whatapp = resp
     })
   }
 
   ngOnInit(): void {
   }
-
-  assssss(){
-    console.log(this.datos)
-  }
-
 }

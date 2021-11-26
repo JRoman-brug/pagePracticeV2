@@ -43,9 +43,7 @@ export class DatosLocalService {
   }
 
   obtenerRedes(){
-    return this.firestore.collection('datosLocal', ref =>{
-      
-    } ref.where('redSocial', '==', true)ref.where("name", "==", "Denver")).snapshotChanges().pipe(
+    return this.firestore.collection('datosLocal', ref => ref.where('redSocial', '==', true).where('informacion', '!=', "")).snapshotChanges().pipe(
       map(a=> a.map(a=>{
         const id = a.payload.doc.id;
         const data = a.payload.doc.data() as IDatoLocal;

@@ -16,18 +16,15 @@
     <!-- Redes sociales -->
     <div class="redesSociales">
         <div *ngFor="let dato of datos">
-            <a href="">
-                <i class="fab fa-{{dato.id}} {{dato.id}}" href=""></i>
+            <a [href]="dato.informacion" target="_blank">
+                <i class="fab fa-{{dato.id}} {{dato.id}}"></i>
             </a>
         </div>
-        <!-- <a href="">
-            <i class="fab fa-whatsapp whatsapp" href=""></i>
-        </a>
-        <a href="">
-            <i class="fab fa-instagram instagram"></i>
-        </a> -->
+        <div *ngIf="whatapp?.informacion != ''">
+            <i class="fab fa-whatsapp whatsapp"></i>
+        </div>
     </div>
 
     <!-- Nombre del negocio -->
-    <p class="nombreNegocio" (click)="assssss()">asd</p>
+    <p class="nombreNegocio" >{{nombreNegocio}}</p>
 </footer>

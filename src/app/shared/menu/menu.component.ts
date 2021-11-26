@@ -4,6 +4,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AbrirModalService } from 'src/app/services/abrirModal/abrir-modal.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DatosLocalService } from 'src/app/services/datosLocal/datos-local.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,17 +15,23 @@ export class MenuComponent implements OnInit {
 
   menu = "";
   user: any;
+  nombreTexto:string | undefined;
 
-  @Output() myEvent = new EventEmitter();
+  
   constructor(
     public dialogService: DialogService,
     private abrirModal: AbrirModalService,
     private $authServ: AuthService,
+    private $datosServ:DatosLocalService
   ) {
     // estado del usuario
     $authServ.getCurrentUser().subscribe(resp => {
       this.user = resp
     });
+    // Obtengo el nombre del negocio
+    $datosServ.ObtenerDato("nombreNegocio").subscribe(resp=>{
+      this.nombreTexto = resp.informacion
+    })
   }
 
 
