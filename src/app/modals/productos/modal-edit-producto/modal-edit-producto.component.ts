@@ -96,33 +96,50 @@ export class ModalEditProductoComponent implements OnInit {
   }
   // Cierro el modal
   cancelModal() {
+    console.log(this.imagen)
     this.ref.close()
   }
 
   // Acepto los cambios
   async submit() {
-
     // Compruebo que el formulario es valido
     if (this.formulario.valid || this.imagenRef) {
-      // Creo la nueva informacion
-      const producto: IProducto = {
-        nombre: this.formulario.value.nombre,
-        precio: this.formulario.value.precio,
-        categoria: this.formulario.value.categoria,
-        descripcion: this.formulario.value.descripcion,
-        img: this.imagenRef,
-        img_path: this.imagen_path
+      let producto: IProducto
+
+      if (this.imagenRef) {
+        producto = {
+          nombre: this.formulario.value.nombre,
+          precio: this.formulario.value.precio,
+          categoria: this.formulario.value.categoria,
+          descripcion: this.formulario.value.descripcion,
+          img: this.imagenRef,
+          img_path: this.imagen_path
+        }
       }
-  
+      else {
+        producto = {
+          nombre: this.formulario.value.nombre,
+          precio: this.formulario.value.precio,
+          categoria: this.formulario.value.categoria,
+          descripcion: this.formulario.value.descripcion,
+          img: this.imagen,
+          img_path: this.imagen_path
+
+
+        }
+      }
+      // Creo la nueva informacion
+      console.log(this.imagen)
+
       // Actualizo la informacion
       this.$productoServ.updateProducto(this.id, producto)
-  
+
       this.toast.success("Se actualizo correctamente el producto a la base de datos", "Se actualizo el producto", { positionClass: 'toast-bottom-right', closeButton: true })
       this.ref.close()
     }
-    else{
+    else {
       // Mensaje de que no lleno todos los campos
-      this.toast.error("Porfavor rellene todos los campos","No completo el formulario",{ positionClass: 'toast-bottom-right', closeButton: true })
+      this.toast.error("Porfavor rellene todos los campos", "No completo el formulario", { positionClass: 'toast-bottom-right', closeButton: true })
     }
 
   }
