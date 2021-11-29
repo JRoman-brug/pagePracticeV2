@@ -16,8 +16,8 @@ import { SwiperModule } from 'swiper/angular';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth'; //autenticacion 
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; //Database
+import { AngularFireAuthModule } from '@angular/fire/compat/auth'; //autenticacion 
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'; //Almacenamiento 
 
 // PrimeNG
@@ -148,8 +148,8 @@ import { ModalContactoComponent } from './modals/modal-contacto/modal-contacto.c
 
     //Firebase 
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
     AngularFireStorageModule,
 
     // PrimeNG

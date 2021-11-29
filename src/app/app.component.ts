@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { DatosLocalService } from './services/datosLocal/datos-local.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,13 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pagePracticesV2';
+  title = "sadasdasdasdada";
 
-  constructor(@Inject(DOCUMENT) private document: any) {}
+  constructor(@Inject(DOCUMENT) private document: any, private datosLocalServ:DatosLocalService) {
+    datosLocalServ.ObtenerDato("nombreNegocio").subscribe(resp=>{
+      // this.title = resp.informacion
+    })
+  }
   elem:any;
 
 
