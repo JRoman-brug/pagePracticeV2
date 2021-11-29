@@ -1,3 +1,40 @@
 .menu{
     margin-top: 50px;
 }
+.container__yt{
+    position: fixed;
+    left: 40px;
+    bottom: 40px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 10px;
+    background: rgb(201, 201, 201);
+    transition: width .4s ease;
+    z-index: 50;
+}
+.container__yt:hover{
+    width: 140px;
+}
+.title{
+    width: 150px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.container__yt a{
+    color: #c4302b;
+    text-decoration: none;
+}
+.container__yt a p{
+    padding-left: 5px;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+.icon{
+    margin-right: 7px;
+}

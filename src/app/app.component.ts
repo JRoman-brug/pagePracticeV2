@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { DatosLocalService } from './services/datosLocal/datos-local.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,13 @@ import { DatosLocalService } from './services/datosLocal/datos-local.service';
 })
 export class AppComponent {
   title = "sadasdasdasdada";
-
-  constructor(@Inject(DOCUMENT) private document: any, private datosLocalServ:DatosLocalService) {
+  user:any;
+  constructor(@Inject(DOCUMENT) private document: any, private datosLocalServ:DatosLocalService, private $authServ:AuthService) {
     datosLocalServ.ObtenerDato("nombreNegocio").subscribe(resp=>{
       // this.title = resp.informacion
+    })
+    $authServ.getCurrentUser().subscribe(resp=>{
+      this.user = resp
     })
   }
   elem:any;
